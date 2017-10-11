@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="axR-hn-PQO" customClass="CustomCalendarCell" customModule="BlueMountain_Swift" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="222" height="167"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="222" height="167"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="defaultButton" translatesAutoresizingMaskIntoConstraints="NO" id="eeS-G2-ocA">
+                        <rect key="frame" x="0.0" y="0.0" width="222" height="167"/>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="atX-J0-2Jl">
+                        <rect key="frame" x="97" y="102" width="28" height="6"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="greenSmall" translatesAutoresizingMaskIntoConstraints="NO" id="e6I-dc-vb8">
+                                <rect key="frame" x="0.0" y="0.0" width="6" height="6"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="redSmall" translatesAutoresizingMaskIntoConstraints="NO" id="GCm-rY-dPi">
+                                <rect key="frame" x="11" y="0.0" width="6" height="6"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="yellowSmall" translatesAutoresizingMaskIntoConstraints="NO" id="cYB-7y-59i">
+                                <rect key="frame" x="22" y="0.0" width="6" height="6"/>
+                            </imageView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="eeS-G2-ocA" firstAttribute="leading" secondItem="axR-hn-PQO" secondAttribute="leading" id="0Vn-25-bQf"/>
+                <constraint firstAttribute="bottom" secondItem="eeS-G2-ocA" secondAttribute="bottom" id="HZN-m1-dXK"/>
+                <constraint firstItem="atX-J0-2Jl" firstAttribute="centerY" secondItem="axR-hn-PQO" secondAttribute="centerY" multiplier="1.2" constant="5" id="IPJ-sV-oxN"/>
+                <constraint firstItem="eeS-G2-ocA" firstAttribute="top" secondItem="axR-hn-PQO" secondAttribute="top" id="M6C-Uq-IH3"/>
+                <constraint firstItem="atX-J0-2Jl" firstAttribute="centerX" secondItem="axR-hn-PQO" secondAttribute="centerX" id="cEN-gB-v1G"/>
+                <constraint firstAttribute="trailing" secondItem="eeS-G2-ocA" secondAttribute="trailing" id="cng-xH-go1"/>
+            </constraints>
+            <size key="customSize" width="222" height="137"/>
+            <connections>
+                <outlet property="OrganicButton" destination="e6I-dc-vb8" id="f8q-FU-chV"/>
+                <outlet property="backgroundImageView" destination="eeS-G2-ocA" id="Cor-mK-pqf"/>
+                <outlet property="buttonsStackView" destination="atX-J0-2Jl" id="jyZ-Sf-NPq"/>
+                <outlet property="garbageButton" destination="GCm-rY-dPi" id="Hid-st-ML8"/>
+                <outlet property="yellowButton" destination="cYB-7y-59i" id="4lE-F8-Ir2"/>
+            </connections>
+            <point key="canvasLocation" x="112" y="-153.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="defaultButton" width="45" height="45"/>
+        <image name="greenSmall" width="6" height="6"/>
+        <image name="redSmall" width="6" height="6"/>
+        <image name="yellowSmall" width="6" height="6"/>
+    </resources>
+</document>

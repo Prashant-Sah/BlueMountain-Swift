@@ -1,0 +1,518 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		64FDB45A3EF9507DD2104D4F /* Pods_BlueMountain_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C088FAB99606AFD4ED3510A4 /* Pods_BlueMountain_Swift.framework */; };
+		8F25F8E21F1DDF49004140E3 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25F8E11F1DDF48004140E3 /* CustomNavigationBar.swift */; };
+		8F25F8E41F1E01E3004140E3 /* CustomRevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25F8E31F1E01E3004140E3 /* CustomRevealViewController.swift */; };
+		8F25F8E61F1E2AA4004140E3 /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25F8E51F1E2AA3004140E3 /* SideBarViewController.swift */; };
+		8F9B91B51F173D6300515365 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9B91B41F173D6300515365 /* Colors.swift */; };
+		8FAA68A71F678ED70096ABC0 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAA68A61F678ED60096ABC0 /* Sections.swift */; };
+		8FAB642A1F1C6A5F00AB77BE /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB64291F1C6A5F00AB77BE /* CustomTabBar.swift */; };
+		8FAB642E1F1C702800AB77BE /* WasteMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB642D1F1C702800AB77BE /* WasteMaterialsViewController.swift */; };
+		8FAB64321F1C705200AB77BE /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB64311F1C705200AB77BE /* InformationViewController.swift */; };
+		8FB5D9381F1DC08100CC10B8 /* CustomTabBarController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5D9371F1DC08100CC10B8 /* CustomTabBarController1.swift */; };
+		8FBBAC1F1F27087C0076D661 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBBAC1E1F27087C0076D661 /* PagingViewController.swift */; };
+		8FBBAC211F2711AA0076D661 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBBAC201F2711AA0076D661 /* FeedbackViewController.swift */; };
+		8FBBAC231F273E0B0076D661 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FBBAC221F273E0B0076D661 /* Main.storyboard */; };
+		8FBEF7091F18959700096AE2 /* CustomCalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FBEF7081F18959600096AE2 /* CustomCalendarCell.xib */; };
+		8FC329491F2058E300EAAD3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FC329481F2058E300EAAD3B /* Assets.xcassets */; };
+		8FC3294B1F20823600EAAD3B /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC3294A1F20823600EAAD3B /* Pages.swift */; };
+		8FC3294D1F2094BE00EAAD3B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC3294C1F2094BE00EAAD3B /* Constants.swift */; };
+		8FC3294F1F20AF4900EAAD3B /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC3294E1F20AF4900EAAD3B /* APICaller.swift */; };
+		8FD1866C1F25BFF600EA5146 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD1866B1F25BFF500EA5146 /* DBManager.swift */; };
+		8FD1866F1F25F79900EA5146 /* ProblemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD1866E1F25F79900EA5146 /* ProblemsViewController.swift */; };
+		8FD186711F25F7F800EA5146 /* problemForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FD186701F25F7F800EA5146 /* problemForm.xib */; };
+		8FFEBA431F163FFE0063DB34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFEBA421F163FFE0063DB34 /* AppDelegate.swift */; };
+		8FFEBA4D1F163FFF0063DB34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FFEBA4B1F163FFF0063DB34 /* LaunchScreen.storyboard */; };
+		8FFEBA5F1F1640ED0063DB34 /* CustomCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFEBA581F1640ED0063DB34 /* CustomCalendarCell.swift */; };
+		8FFEBA631F1641980063DB34 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFEBA621F1641980063DB34 /* CalendarViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5676E467FC502C94384C2A7E /* Pods-BlueMountain-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueMountain-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueMountain-Swift/Pods-BlueMountain-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		7E9E3B452EC807C2AE832858 /* Pods-BlueMountain-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueMountain-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueMountain-Swift/Pods-BlueMountain-Swift.debug.xcconfig"; sourceTree = "<group>"; };
+		8F25F8E11F1DDF48004140E3 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		8F25F8E31F1E01E3004140E3 /* CustomRevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRevealViewController.swift; sourceTree = "<group>"; };
+		8F25F8E51F1E2AA3004140E3 /* SideBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
+		8F9B91B01F171E6700515365 /* BlueMountain-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlueMountain-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		8F9B91B41F173D6300515365 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		8FAA68A61F678ED60096ABC0 /* Sections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
+		8FAB64291F1C6A5F00AB77BE /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		8FAB642D1F1C702800AB77BE /* WasteMaterialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WasteMaterialsViewController.swift; sourceTree = "<group>"; };
+		8FAB64311F1C705200AB77BE /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		8FB5D9371F1DC08100CC10B8 /* CustomTabBarController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController1.swift; sourceTree = "<group>"; };
+		8FBBAC1E1F27087C0076D661 /* PagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
+		8FBBAC201F2711AA0076D661 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		8FBBAC221F273E0B0076D661 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		8FBEF7081F18959600096AE2 /* CustomCalendarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalendarCell.xib; sourceTree = "<group>"; };
+		8FC329481F2058E300EAAD3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "BlueMountain-Swift/Assets.xcassets"; sourceTree = "<group>"; };
+		8FC3294A1F20823600EAAD3B /* Pages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
+		8FC3294C1F2094BE00EAAD3B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8FC3294E1F20AF4900EAAD3B /* APICaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		8FD1866B1F25BFF500EA5146 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		8FD1866E1F25F79900EA5146 /* ProblemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemsViewController.swift; sourceTree = "<group>"; };
+		8FD186701F25F7F800EA5146 /* problemForm.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = problemForm.xib; sourceTree = "<group>"; };
+		8FFEBA3F1F163FFE0063DB34 /* BlueMountain-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BlueMountain-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FFEBA421F163FFE0063DB34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8FFEBA4C1F163FFF0063DB34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8FFEBA4E1F163FFF0063DB34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FFEBA581F1640ED0063DB34 /* CustomCalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalendarCell.swift; sourceTree = "<group>"; };
+		8FFEBA621F1641980063DB34 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		C088FAB99606AFD4ED3510A4 /* Pods_BlueMountain_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlueMountain_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8FFEBA3C1F163FFE0063DB34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64FDB45A3EF9507DD2104D4F /* Pods_BlueMountain_Swift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5A40AB5310DBC61E2C7EACE5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C088FAB99606AFD4ED3510A4 /* Pods_BlueMountain_Swift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B44C5F7FB9D68D9CA66A5F0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7E9E3B452EC807C2AE832858 /* Pods-BlueMountain-Swift.debug.xcconfig */,
+				5676E467FC502C94384C2A7E /* Pods-BlueMountain-Swift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8FD1866A1F25BF7900EA5146 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				8FD1866B1F25BFF500EA5146 /* DBManager.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		8FD1866D1F25F6C800EA5146 /* ProblemsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8FD186701F25F7F800EA5146 /* problemForm.xib */,
+				8FD1866E1F25F79900EA5146 /* ProblemsViewController.swift */,
+				8FBBAC1E1F27087C0076D661 /* PagingViewController.swift */,
+				8FBBAC201F2711AA0076D661 /* FeedbackViewController.swift */,
+			);
+			path = ProblemsViewController;
+			sourceTree = "<group>";
+		};
+		8FFEBA361F163FFD0063DB34 = {
+			isa = PBXGroup;
+			children = (
+				8FFEBA411F163FFE0063DB34 /* BlueMountain-Swift */,
+				8FFEBA401F163FFE0063DB34 /* Products */,
+				8FC329481F2058E300EAAD3B /* Assets.xcassets */,
+				7B44C5F7FB9D68D9CA66A5F0 /* Pods */,
+				5A40AB5310DBC61E2C7EACE5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8FFEBA401F163FFE0063DB34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8FFEBA3F1F163FFE0063DB34 /* BlueMountain-Swift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8FFEBA411F163FFE0063DB34 /* BlueMountain-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				8FBBAC221F273E0B0076D661 /* Main.storyboard */,
+				8FFEBA421F163FFE0063DB34 /* AppDelegate.swift */,
+				8FD1866A1F25BF7900EA5146 /* DataBase */,
+				8FFEBA541F1640ED0063DB34 /* Constants */,
+				8FFEBA571F1640ED0063DB34 /* Custom Views */,
+				8FFEBA5A1F1640ED0063DB34 /* Helpers */,
+				8FFEBA5B1F1640ED0063DB34 /* Model */,
+				8FFEBA5C1F1640ED0063DB34 /* ViewControllers */,
+				8FFEBA4B1F163FFF0063DB34 /* LaunchScreen.storyboard */,
+				8FFEBA4E1F163FFF0063DB34 /* Info.plist */,
+				8F9B91B01F171E6700515365 /* BlueMountain-Swift-Bridging-Header.h */,
+			);
+			path = "BlueMountain-Swift";
+			sourceTree = "<group>";
+		};
+		8FFEBA541F1640ED0063DB34 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				8FC3294C1F2094BE00EAAD3B /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		8FFEBA571F1640ED0063DB34 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				8FFEBA581F1640ED0063DB34 /* CustomCalendarCell.swift */,
+				8FBEF7081F18959600096AE2 /* CustomCalendarCell.xib */,
+				8FAB64291F1C6A5F00AB77BE /* CustomTabBar.swift */,
+				8FB5D9371F1DC08100CC10B8 /* CustomTabBarController1.swift */,
+				8F25F8E11F1DDF48004140E3 /* CustomNavigationBar.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		8FFEBA5A1F1640ED0063DB34 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8F9B91B41F173D6300515365 /* Colors.swift */,
+				8FC3294E1F20AF4900EAAD3B /* APICaller.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8FFEBA5B1F1640ED0063DB34 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8FC3294A1F20823600EAAD3B /* Pages.swift */,
+				8FAA68A61F678ED60096ABC0 /* Sections.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8FFEBA5C1F1640ED0063DB34 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8FD1866D1F25F6C800EA5146 /* ProblemsViewController */,
+				8FFEBA621F1641980063DB34 /* CalendarViewController.swift */,
+				8FAB642D1F1C702800AB77BE /* WasteMaterialsViewController.swift */,
+				8FAB64311F1C705200AB77BE /* InformationViewController.swift */,
+				8F25F8E31F1E01E3004140E3 /* CustomRevealViewController.swift */,
+				8F25F8E51F1E2AA3004140E3 /* SideBarViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8FFEBA3E1F163FFE0063DB34 /* BlueMountain-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FFEBA511F163FFF0063DB34 /* Build configuration list for PBXNativeTarget "BlueMountain-Swift" */;
+			buildPhases = (
+				7C2BEFAC2A701C9EF9A30410 /* [CP] Check Pods Manifest.lock */,
+				8FFEBA3B1F163FFE0063DB34 /* Sources */,
+				8FFEBA3C1F163FFE0063DB34 /* Frameworks */,
+				8FFEBA3D1F163FFE0063DB34 /* Resources */,
+				5C463C43AA1C66D733DBFC3B /* [CP] Embed Pods Frameworks */,
+				7D9D97A5C4D71A9D33518F98 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BlueMountain-Swift";
+			productName = "BlueMountain-Swift";
+			productReference = 8FFEBA3F1F163FFE0063DB34 /* BlueMountain-Swift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8FFEBA371F163FFE0063DB34 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Prashant Sah";
+				TargetAttributes = {
+					8FFEBA3E1F163FFE0063DB34 = {
+						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 8FFEBA3A1F163FFE0063DB34 /* Build configuration list for PBXProject "BlueMountain-Swift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8FFEBA361F163FFD0063DB34;
+			productRefGroup = 8FFEBA401F163FFE0063DB34 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8FFEBA3E1F163FFE0063DB34 /* BlueMountain-Swift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8FFEBA3D1F163FFE0063DB34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FFEBA4D1F163FFF0063DB34 /* LaunchScreen.storyboard in Resources */,
+				8FBBAC231F273E0B0076D661 /* Main.storyboard in Resources */,
+				8FBEF7091F18959700096AE2 /* CustomCalendarCell.xib in Resources */,
+				8FC329491F2058E300EAAD3B /* Assets.xcassets in Resources */,
+				8FD186711F25F7F800EA5146 /* problemForm.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5C463C43AA1C66D733DBFC3B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueMountain-Swift/Pods-BlueMountain-Swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C2BEFAC2A701C9EF9A30410 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7D9D97A5C4D71A9D33518F98 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueMountain-Swift/Pods-BlueMountain-Swift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8FFEBA3B1F163FFE0063DB34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FD1866F1F25F79900EA5146 /* ProblemsViewController.swift in Sources */,
+				8F25F8E41F1E01E3004140E3 /* CustomRevealViewController.swift in Sources */,
+				8F25F8E21F1DDF49004140E3 /* CustomNavigationBar.swift in Sources */,
+				8FBBAC211F2711AA0076D661 /* FeedbackViewController.swift in Sources */,
+				8FFEBA5F1F1640ED0063DB34 /* CustomCalendarCell.swift in Sources */,
+				8FAB642A1F1C6A5F00AB77BE /* CustomTabBar.swift in Sources */,
+				8FC3294B1F20823600EAAD3B /* Pages.swift in Sources */,
+				8FBBAC1F1F27087C0076D661 /* PagingViewController.swift in Sources */,
+				8FC3294D1F2094BE00EAAD3B /* Constants.swift in Sources */,
+				8FB5D9381F1DC08100CC10B8 /* CustomTabBarController1.swift in Sources */,
+				8FC3294F1F20AF4900EAAD3B /* APICaller.swift in Sources */,
+				8FAA68A71F678ED70096ABC0 /* Sections.swift in Sources */,
+				8F25F8E61F1E2AA4004140E3 /* SideBarViewController.swift in Sources */,
+				8FD1866C1F25BFF600EA5146 /* DBManager.swift in Sources */,
+				8F9B91B51F173D6300515365 /* Colors.swift in Sources */,
+				8FAB642E1F1C702800AB77BE /* WasteMaterialsViewController.swift in Sources */,
+				8FFEBA631F1641980063DB34 /* CalendarViewController.swift in Sources */,
+				8FFEBA431F163FFE0063DB34 /* AppDelegate.swift in Sources */,
+				8FAB64321F1C705200AB77BE /* InformationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8FFEBA4B1F163FFF0063DB34 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8FFEBA4C1F163FFF0063DB34 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8FFEBA4F1F163FFF0063DB34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8FFEBA501F163FFF0063DB34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8FFEBA521F163FFF0063DB34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E9E3B452EC807C2AE832858 /* Pods-BlueMountain-Swift.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "BlueMountain-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ebpearls.BlueMountain-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BlueMountain-Swift/BlueMountain-Swift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		8FFEBA531F163FFF0063DB34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5676E467FC502C94384C2A7E /* Pods-BlueMountain-Swift.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "BlueMountain-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ebpearls.BlueMountain-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BlueMountain-Swift/BlueMountain-Swift-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8FFEBA3A1F163FFE0063DB34 /* Build configuration list for PBXProject "BlueMountain-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FFEBA4F1F163FFF0063DB34 /* Debug */,
+				8FFEBA501F163FFF0063DB34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FFEBA511F163FFF0063DB34 /* Build configuration list for PBXNativeTarget "BlueMountain-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FFEBA521F163FFF0063DB34 /* Debug */,
+				8FFEBA531F163FFF0063DB34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8FFEBA371F163FFE0063DB34 /* Project object */;
+}

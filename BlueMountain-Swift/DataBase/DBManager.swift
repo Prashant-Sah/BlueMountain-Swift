@@ -8,11 +8,12 @@
 
 import Foundation
 import FMDB
+import ObjectMapper
 
 
 class DBManager{
     
-    let database : FMDatabase?
+    var database : FMDatabase = FMDatabase()
     //let queue : FMDatabaseQueue?
     static let sharedInstance = DBManager()
     let databaseName : String = "WasteInfo.db"
@@ -23,29 +24,30 @@ class DBManager{
             .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent(databaseName)
         print(fileURL)
-        database = FMDatabase(url: fileURL)
-
-        database?.open()
+        self.database = FMDatabase(url: fileURL)
+        
+        database.open()
         //queue = FMDatabaseQueue(path: databasePath)
         
-        let query1 : String = "create table if not exists pages(page_id integer primary key, page_title text, page_description text, page_content text, page_image text, section_id integer, type_of_calendar integer, latitude text, longitude text, page_status integer, allowed text, not_allowed text, bin_type_id integer, bin_color_id integer, page_order integer)"
-        let query2 = "create table if not exists problem_type (id integer primary key autoincrement, title text, email varchar, is_deleted integer)"
-        let query3 = "create table if not exists section (id integer primary key, title text, parent_id integer, status integer, type integer)"
-       
+        let query1 : String = "create table if not exists pages(page_id integer primary key, page_title text, page_description text, page_content text, page_image text, section_id integer, type_of_calendar integer, latitude text, longitude text, page_status integer, allowed text, not_allowed text, bin_type_id integer, bin_color_id text, page_order integer)"
+        
+        let query2 = "create table if not exists problem_types (id integer primary key autoincrement, title text, email varchar, is_deleted integer)"
+        
+        let query3 = "create table if not exists sections (section_id integer primary key, title text, parent_id integer, status integer)"
+        
         do{
-            try database?.executeUpdate(query1, values: nil)
-            try database?.executeUpdate(query2, values:nil)
-            try database?.executeUpdate(query3, values:nil)
+            try database.executeUpdate(query1, values: nil)
+            try database.executeUpdate(query2, values:nil)
+            try database.executeUpdate(query3, values:nil)
         }catch{
             print("Unable to create table")
         }
         
-        database?.close()
+        database.close()
     }
     
     func pushPagesToDatabase(withArray pages: [Pages] ){
         
-        database?.open()
         for page : Pages in pages as [Pages] {
             pushSinglePageToDatabase(withPage: page )
         }
@@ -53,17 +55,76 @@ class DBManager{
     
     func pushSinglePageToDatabase(withPage page : Pages!){
         
-        database?.open()
+        database.open()
         do{
-            let params : Array = [ page.pageId!, page.pageTitle!, page.pageDescription!, page.pageContent!, page.pageImage!, page.sectionId!, page.typeOfCalendar ?? "",  page.latitude!, page.longitude!, page.pageStatus!, page.allowed ?? false, page.notAllowed ?? false, page.binTypId!, page.binColorId!, page.pageOrder ?? ""  ] as [Any]
+            let params : Array = [ page.pageId!  , page.pageTitle!, page.pageDescription!, page.pageContent ?? "", page.pageImage!, page.sectionId!, page.typeOfCalendar ?? "",  page.latitude!, page.longitude!, page.pageStatus!, page.allowed ?? false, page.notAllowed ?? false, page.binTypeId ?? "", page.binColorId ?? "", page.pageOrder ?? ""  ] as [Any]
             
-            try database?.executeUpdate("insert into Posts_table (page_id ,  page_title, page_description , page_content, page_image, section_id , type_of_calendar, latitude, longitude, page_status, allowed, not_allowed, bin_type_id, bin_color_id, page_order ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ", values: params)
+            try database.executeUpdate("insert into pages (page_id ,  page_title, page_description , page_content, page_image, section_id , type_of_calendar, latitude, longitude, page_status, allowed, not_allowed, bin_type_id, bin_color_id, page_order ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ", values: params)
         }catch{
             print("Could not insert into database")
         }
-        
-        //[db executeUpdate:@"insert into Posts_table (page_id ,  page_title, page_description , page_content, page_image, section_id , type_of_calendar, latitude, longitude, page_status, allowed, not_allowed, bin_type_id, bin_color_id, page_order ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ",[NSNumber numberWithInt:  ], [NSNumber numberWithInt:post.postType], [NSString stringWithString: post.title], [NSString stringWithString: post.postSlug], [NSString stringWithString: post.postDescription], [NSNumber numberWithInt:post.numberOfRooms], [NSNumber numberWithInt:post.price], [NSNumber numberWithDouble:post.latitude] , [NSNumber numberWithDouble:post.longitude],[NSString stringWithString: post.location], [NSString stringWithString:post.postCreatedOn], [NSString stringWithString:post.postUpdatedOn], [post.postDeletedOn isEqual:[NSNull null]]?  @"" : [NSString stringWithString:post.postDeletedOn], [NSNumber numberWithInt: post.postUser.userId] ];
     }
     
+    
+    func getPagesFromDatabase(withQuery query : String) -> [Pages]? {
+        
+        var pages : [Pages] = [Pages]()
+        database.open()
+        do{
+            let results = try database.executeQuery(query, values: nil)
+            while results.next() {
+                let page = Mapper<Pages>().map(JSONObject: results.resultDictionary)
+                pages.append(page!)
+            }
+            
+        } catch{
+            print("Error retrieving pages from database")
+        }
+        database.close()
+        return pages
+    }
+    
+}
+
+// MARK:  Section related events
+extension DBManager {
+    
+    func pushSectionsToDatabase(withSections sections : [Sections]){
+        
+        for section in sections{
+            pushSingleSectionToDatabase(withSection: section)
+        }
+    }
+    
+    
+    func pushSingleSectionToDatabase(withSection section : Sections){
+        
+        database.open()
+        do{
+            let params : Array = [ section.sectionId!  , section.title!, section.parentId!, section.status!] as [Any]
+            
+            try database.executeUpdate("insert into sections (section_id ,  title, parent_id , status ) values (?,?,?,?) ", values: params)
+        }catch{
+            print("Could not insert into database")
+        }
+        database.close()
+    }
+    
+    func getSectionsFromDatabase(withQuery query : String) -> [Sections] {
+        
+        var sections : [Sections] = [Sections]()
+        database.open()
+        do{
+            let results = try database.executeQuery(query, values: nil)
+            while results.next() {
+                let section = Mapper<Sections>().map(JSONObject: results.resultDictionary)
+                sections.append(section!)
+            }
+        } catch{
+            print("Error retrieving section from database")
+        }
+        database.close()
+        return sections
+    }
 }
 

@@ -9,6 +9,7 @@ target 'BlueMountain-Swift' do
 	pod 'CCAutocomplete'
 	pod 'Reachability'
 	pod 'ObjectMapper'
+	pod 'SDWebImage'
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 

@@ -51,9 +51,8 @@ class FeedbackViewController: UIViewController {
         
         let transition = CATransition.init()
         transition.duration = 0.45
-        transition.type =  kCATransitionReveal
-        self.navigationController?.view.layer.add(transition
-            , forKey: nil)
+        transition.type =  kCATransitionPush
+        self.navigationController?.view.layer.add(transition, forKey: nil)
         self.navigationController?.setViewControllers([problemsVC!], animated: false)
     }
     

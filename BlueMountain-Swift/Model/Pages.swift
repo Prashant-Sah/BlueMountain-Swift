@@ -11,44 +11,45 @@ import ObjectMapper
 
 class Pages : Mappable{
     
-    var  pageId : Int?
+    var  pageId : String?
     var  pageTitle : String?
     var  pageDescription : String?
     var  pageContent : String?
     var  pageImage : String?
-    var  sectionId : Int?
-    var  typeOfCalendar : Int?
+    var  sectionId : String?
+    var  typeOfCalendar : String?
     var  latitude : String?
     var  longitude : String?
-    var  pageStatus : Int?
+    var  pageStatus : String?
     var  allowed : String?
     var  notAllowed : String?
-    var  binTypId : Int?
-    var  binColorId : Int?
-    var  pageOrder : Int?
+    var  binTypeId : String?
+    var  binColorId : String?
+    var  pageOrder : String?
     
     required init?(map: Map) {
         
     }
     
     func mapping(map: Map) {
-        pageId    <- map["page_id"]
-        pageTitle         <- map["page_title"]
-        pageDescription      <- map["page_description"]
-        pageContent       <- map["page_content"]
-        pageImage  <- map["page_image"]
-        sectionId  <- map["section_id"]
-        typeOfCalendar     <- map["typeOfCalendar"] //N/A
-        latitude    <- map["latitude"]
-        longitude    <- map["longitude"]
-        pageStatus         <- map["page_status"]
-        allowed      <- map["allowed"]              //N/A
-        notAllowed       <- map["not_allowed"]       //N/A
-        binTypId  <- map["bin_type_id"]
-        binColorId  <- map["bin_color_id"]
-        pageOrder  <- map["page_order"]
+        pageId          <- map["page_id"]
+        pageTitle       <- map["page_title"]
+        pageDescription <- map["page_description"]
+        pageContent     <- map["page_content"]
+        pageImage       <- map["page_image"]
+        sectionId       <- map["section_id"]
+        typeOfCalendar  <- map["type_of_calendar"]        //N/A
+        latitude        <- map["latitude"]
+        longitude       <- map["longitude"]
+        pageStatus      <- map["page_status"]
+        allowed         <- map["allowed"]               //N/A
+        notAllowed      <- map["not_allowed"]           //N/A
+        binTypeId        <- map["bin_type_id"]
+        binColorId      <- map["bin_color_id"]
+        pageOrder       <- map["page_order"]
            }
     
+    /*
     init(fromJson PagesDictionary: NSDictionary){
         
         self.pageId = PagesDictionary["page_id"] as? Int
@@ -67,5 +68,6 @@ class Pages : Mappable{
         self.binColorId = PagesDictionary["bin_color_id"] as? Int
         
     }
+ */
     
 }

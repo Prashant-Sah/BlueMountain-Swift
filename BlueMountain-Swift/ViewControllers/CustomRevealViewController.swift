@@ -17,11 +17,6 @@ class CustomRevealViewController: UIViewController, SWRevealViewControllerDelega
         let revealViewController : SWRevealViewController = self.revealViewController()
         revealViewController.delegate = self
         
-//        self.navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "navBar"), for: UIBarMetrics.default)
-//
-//        let leftBarButton : UIBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .plain, target: revealViewController, action: #selector(self.revealViewController().revealToggle(_:)))
-//        self.navigationItem.leftBarButtonItem = leftBarButton 
-        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         revealViewController.rearViewRevealWidth = 340
         revealViewController.rearViewRevealOverdraw = 0

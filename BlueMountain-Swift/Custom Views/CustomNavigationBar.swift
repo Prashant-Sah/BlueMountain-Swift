@@ -7,16 +7,23 @@
 //
 
 import UIKit
+import SWRevealViewController
 
-
-class CustomNavigationBar: UINavigationBar {
+class CustomNavigationBar: UINavigationBar{
     
+    enum NavigationButtonType : Int {
+        case menu = 1
+        case back = 2
+    }
     
     static var titleText : String?
+    var buttonType : Int?
+    var leftButton = UIButton()
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
+    
     
     override func draw(_ rect: CGRect) {
         
@@ -30,11 +37,25 @@ class CustomNavigationBar: UINavigationBar {
         navBarImageView.contentMode = .scaleAspectFill
         navBar.addSubview(navBarImageView)
         
-        let menuButton : UIButton = UIButton(frame: CGRect(x: 10, y: 20, width: 40, height: 40))
-        menuButton.setBackgroundImage(#imageLiteral(resourceName: "settings"), for: .normal)
-        menuButton.contentMode = .scaleAspectFill
-        navBar.addSubview(menuButton)
+        leftButton = UIButton(frame: CGRect(x: 10, y: 20, width: 40, height: 40))
         
+        self.buttonType = self.buttonType ?? NavigationButtonType.menu.rawValue
+        
+        switch self.buttonType! {
+            
+        case NavigationButtonType.menu.rawValue:
+            leftButton.setBackgroundImage(#imageLiteral(resourceName: "settings"), for: .normal)
+            let revealViewController = SWRevealViewController().revealViewController()
+            leftButton.addTarget(revealViewController, action: #selector(revealViewController?.revealToggle(_:)), for: .touchUpInside)
+            break
+        case NavigationButtonType.back.rawValue:
+            leftButton.setBackgroundImage(#imageLiteral(resourceName: "leftBut"), for: .normal)
+            leftButton.addTarget(self.window?.rootViewController?.presentingViewController, action: #selector(PageDetailsViewController.backButtonClicked) , for: .touchUpInside)
+        default:
+            break
+        }
+        leftButton.contentMode = .scaleAspectFill
+        navBar.addSubview(leftButton)
         
         
         //Put title logo
@@ -50,14 +71,16 @@ class CustomNavigationBar: UINavigationBar {
         
         
         //Put council logo
-
+        
         let councilLogoImageView = UIImageView(frame: CGRect(x: 0 , y: 0, width: 80, height: 50))
         councilLogoImageView.center = CGPoint(x: navBar.frame.size.width - (councilLogoImageView.frame.size.width/2), y: navBar.center.y)
         councilLogoImageView.image = #imageLiteral(resourceName: "councilLogo_blue")
         councilLogoImageView.contentMode = UIViewContentMode.scaleAspectFill
         navBar.addSubview(councilLogoImageView)
-      
         
     }
     
+    
 }
+
+

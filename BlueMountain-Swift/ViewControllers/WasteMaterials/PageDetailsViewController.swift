@@ -46,6 +46,8 @@ class PageDetailsViewController: UIViewController, UIWebViewDelegate {
             self.mapView.removeFromSuperview()
             self.mapView = nil
         }
+        self.pageDetailsView.removeFromSuperview()
+        self.pageDetailsView = nil
     }
     
 }

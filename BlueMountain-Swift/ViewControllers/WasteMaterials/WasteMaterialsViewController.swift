@@ -23,7 +23,7 @@ class WasteMaterialsViewController: CustomRevealViewController {
         self.tableView.delegate = self
         self.tableView.register(UINib(nibName: "WasteMaterialsTableViewCell", bundle: nil) ,forCellReuseIdentifier: "WasteCell")
         
-        self.revealViewController().panGestureRecognizer()
+        //self.revealViewController().panGestureRecognizer()
         
         let query = "Select * from pages where section_id = 2"
         let pagesFromDB = DBManager.sharedInstance.getPagesFromDatabase(withQuery: query)
@@ -34,6 +34,8 @@ class WasteMaterialsViewController: CustomRevealViewController {
             pages = pagesFromDB!
             self.tableView.reloadData()
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(deActivateRevealAction) , name: locationSelectedNotificationKey, object: nil)
     }
     
     
@@ -61,15 +63,12 @@ extension WasteMaterialsViewController {
                 return
             }
             
-            let obtainedResponse = response.result.value as! Dictionary<String, Any>
-            
+            let obtainedResponse = response.result.value as! [String:Any]
+            print(obtainedResponse["code"]!)
             let wasteMaterialsData = obtainedResponse["list"] as! NSArray
             
             sSelf.pages = Mapper<Pages>().mapArray(JSONObject: wasteMaterialsData)!
             
-            for page in sSelf.pages {
-                print(page.pageTitle!)
-            }
             sSelf.tableView.reloadData()
             DBManager.sharedInstance.pushPagesToDatabase(withArray: sSelf.pages)
             
@@ -114,5 +113,15 @@ extension WasteMaterialsViewController : UITableViewDelegate {
         
         pageDetailsVC?.receivedPage = self.pages[indexPath.row]
         self.navigationController?.pushViewController(pageDetailsVC!, animated: true)
+    }
+}
+
+
+extension WasteMaterialsViewController{
+    
+    func deActivateRevealAction(){
+        
+        self.revealViewController().panGestureRecognizer().isEnabled = false
+        
     }
 }

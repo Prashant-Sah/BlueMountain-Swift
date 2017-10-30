@@ -21,8 +21,28 @@ class CustomTabBarController1: UITabBarController, SWRevealViewControllerDelegat
     let buttonOnImages : [UIImage] = [#imageLiteral(resourceName: "calOn"), #imageLiteral(resourceName: "wasteOn"), #imageLiteral(resourceName: "reportOn"), #imageLiteral(resourceName: "servicesOn")]
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+       
+        let wasteMaterialsVC = self.storyboard?.instantiateViewController(withIdentifier: "WasteMaterialsVC") as! WasteMaterialsViewController
+        let problemsVC = self.storyboard?.instantiateViewController(withIdentifier: "ProblemsVC") as! ProblemsViewController
+        let informationVC = self.storyboard?.instantiateViewController(withIdentifier: "InformationViewController") as! InformationViewController
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(CustomTabBarController1.setTabBarItemsBasedOnLocation) , name: locationSelectedNotificationKey , object: nil)
+        
+        if UserDefaults.standard.value(forKey: "Location") != nil {
+             let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as! CalendarViewController
+            self.setViewControllers([calendarVC, wasteMaterialsVC, problemsVC, informationVC], animated: true)
+            
+        }else{
+            let initialVC = self.storyboard?.instantiateViewController(withIdentifier: "InitialVC") as! InitialViewController
+            self.setViewControllers([initialVC, wasteMaterialsVC, problemsVC, informationVC], animated: true)
+
+        }
+        
         self.setTabBarButtons()
+        
     }
     
     func setTabBarButtons(){
@@ -75,4 +95,15 @@ class CustomTabBarController1: UITabBarController, SWRevealViewControllerDelegat
         }
     }
     
+    func setTabBarItemsBasedOnLocation(){
+        
+        let wasteMaterialsVC = self.storyboard?.instantiateViewController(withIdentifier: "WasteMaterialsVC") as! WasteMaterialsViewController
+        let problemsVC = self.storyboard?.instantiateViewController(withIdentifier: "ProblemsVC") as! ProblemsViewController
+        let informationVC = self.storyboard?.instantiateViewController(withIdentifier: "InformationViewController") as! InformationViewController
+        let initialVC = self.storyboard?.instantiateViewController(withIdentifier: "InitialVC") as! InitialViewController
+        self.setViewControllers([initialVC, wasteMaterialsVC, problemsVC, informationVC], animated: true)
+    }
+    
+    
 }
+

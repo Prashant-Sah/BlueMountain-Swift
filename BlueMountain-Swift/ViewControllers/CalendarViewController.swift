@@ -38,7 +38,7 @@ class CalendarViewController : CustomRevealViewController{
         self.calendar.delegate = self
         
         self.tableView.dataSource = self
-        self.tableView.delegate = self as? UITableViewDelegate
+        self.tableView.delegate = self
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CalendarCell")
         
         self.revealViewController().panGestureRecognizer()
@@ -121,59 +121,22 @@ extension CalendarViewController {
     @IBAction func stackButtonsPressed(sender : UIButton){
         
         if(sender.tag != 0 && sender.tag <= 3){
-            self.getPageFromDatabase(withBinColor: sender.tag)
+            self.getPage(withBinColor: sender.tag)
         }else{
-            print("set Reminder Arey :D ")
+            self.revealViewController().revealToggle(animated: true)
         }
     }
     
-    func getPageFromDatabase(withBinColor binColorId : Int ){
+    func getPage(withBinColor binColorId : Int ){
         
-        //let index = self.binPages.index { (page) -> Bool in
-            //page.binTypeId == binColorId
-            //page.pageTitle == "ORGANIC"
-        //}
-        let index = 2
-        self.passPageToPageDetailsVC(withPage: self.binPages[index])
-        
-        let query = "Select * from pages where section_id = 3 and bin_color_id = \(binColorId)"
-        self.passPageToPageDetailsVC(withPage: (DBManager.sharedInstance.getPagesFromDatabase(withQuery: query)?.first)!)
-        
+        let index = self.binPages.index { (page) -> Bool in
+            page.binColorId == String(binColorId)
+        }
+        self.passPageToPageDetailsVC(withPage: self.binPages[index!])
     }
-        @IBAction func garbageButtonClicked(_ sender: UIButton) {
-    
-            let index = self.binPages.index { (page) -> Bool in
-                page.pageTitle == "GARBAGE"
-            }
-            if(index != nil){
-            self.passPageToPageDetailsVC(withPage: self.binPages[index!])
-            }
-        }
-    
-        @IBAction func organicButtonClicked(_ sender: UIButton) {
-            let index = self.binPages.index { (page) -> Bool in
-                page.pageTitle == "ORGANIC"
-            }
-            if(index != nil){
-                self.passPageToPageDetailsVC(withPage: self.binPages[index!])
-            }
-        }
-    
-        @IBAction func recyclingButtonClicked(_ sender: UIButton) {
-            let index = self.binPages.index { (page) -> Bool in
-                page.pageTitle == "RECYCLING"
-            }
-            if(index != nil){
-                self.passPageToPageDetailsVC(withPage: self.binPages[index!])
-            }
-        }
-    
-    
-        @IBAction func setReminderButtonClicked(_ sender: UIButton) {
-        }
-    
-    
 }
+
+
 
 // MARK: - UITableViewDataSource functions
 extension CalendarViewController : UITableViewDataSource {
@@ -211,6 +174,8 @@ extension CalendarViewController : UITableViewDelegate {
 }
 
 
+
+
 // Presenting PageDetailsViewController
 extension CalendarViewController {
     
@@ -227,7 +192,7 @@ extension CalendarViewController {
     
     func getBinPagesFromServer() {
         
-        let getPagesBySectionIdURL = "\(BASE_URL.appending(GET_PAGES_BY_SECTION_ID_PATH))"
+        let getPagesBySectionIdURL = BASE_URL.appending(GET_PAGES_BY_SECTION_ID_PATH)
         
         let param = [
             "section_id" : "3",
@@ -242,13 +207,9 @@ extension CalendarViewController {
             
             let obtainedResponse = response.result.value as! Dictionary<String,Any>
 
-            let data = obtainedResponse["pages"] as! NSArray
-            let dict = data.firstObject
+            let data = obtainedResponse["pages"] as! [[String: Any]]
             sSelf.binPages = Mapper<Pages>().mapArray(JSONObject: data)!
             
-            for page in sSelf.binPages {
-                print(page.pageTitle!)
-            }
             DBManager.sharedInstance.pushPagesToDatabase(withArray: sSelf.binPages)
         })
         
@@ -276,10 +237,10 @@ extension CalendarViewController {
             
             sSelf.tableViewPages = Mapper<Pages>().mapArray(JSONObject: data)!
             
-            for page in sSelf.tableViewPages {
-                print(page.pageTitle!)
-            }
             DBManager.sharedInstance.pushPagesToDatabase(withArray: sSelf.tableViewPages)
+            //sSelf.tableView.reloadData()
+            sSelf.binPages = sSelf.getDataFromDatabase().0
+            sSelf.tableViewPages = sSelf.getDataFromDatabase().1
             sSelf.tableView.reloadData()
         })
     }

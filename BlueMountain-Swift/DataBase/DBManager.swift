@@ -27,13 +27,12 @@ class DBManager{
         self.database = FMDatabase(url: fileURL)
         
         database.open()
-        //queue = FMDatabaseQueue(path: databasePath)
         
-        let query1 : String = "create table if not exists pages(page_id integer primary key, page_title text, page_description text, page_content text, page_image text, section_id integer, type_of_calendar integer, latitude text, longitude text, page_status integer, allowed text, not_allowed text, bin_type_id integer, bin_color_id text, page_order integer)"
+        let query1 : String = "create table if not exists pages(page_id text primary key, page_title text, page_description text, page_content text, page_image text, section_id text, type_of_calendar text, latitude text, longitude text, page_status text, allowed text, not_allowed text, bin_type_id text, bin_color_id text, page_order text)"
         
-        let query2 = "create table if not exists problem_types (id integer primary key autoincrement, title text, email varchar, is_deleted integer)"
+        let query2 = "create table if not exists problem_types (id integer primary key autoincrement, title text, email varchar, is_deleted text)"
         
-        let query3 = "create table if not exists sections (section_id integer primary key, title text, parent_id integer, status integer)"
+        let query3 = "create table if not exists sections (section_id text primary key, title text, parent_id text, status text)"
         
         do{
             try database.executeUpdate(query1, values: nil)
@@ -45,6 +44,15 @@ class DBManager{
         
         database.close()
     }
+    
+    
+}
+
+
+
+
+// MARK: - Pages related Events
+extension DBManager{
     
     func pushPagesToDatabase(withArray pages: [Pages] ){
         
@@ -85,6 +93,7 @@ class DBManager{
     }
     
 }
+
 
 // MARK:  Section related events
 extension DBManager {
@@ -127,4 +136,44 @@ extension DBManager {
         return sections
     }
 }
+
+extension DBManager {
+    
+    func pushProblemTypesToDatabase(withArray problemTypes : [ProblemTypes]){
+        for problemType in problemTypes{
+            self.pushSingleProblemTypeToDatabase(withtype: problemType)
+        }
+    }
+    
+    func pushSingleProblemTypeToDatabase(withtype problemType : ProblemTypes){
+        database.open()
+        do{
+            let params : Array = [ problemType.problemTypeId!  , problemType.title!, problemType.isDeleted!] as [Any]
+            
+            try database.executeUpdate("insert into problem_types (id ,  title, is_deleted ) values (?,?,?) ", values: params)
+        }catch{
+            print("Could not insert into database")
+        }
+        database.close()
+    }
+    
+    func getProblemTypesFromDatabase() -> [ProblemTypes] {
+        
+        let query = "Select * from problem_types"
+        var problemTypes = [ProblemTypes]()
+        database.open()
+        do{
+            let results = try database.executeQuery(query, values: nil)
+            while results.next() {
+                let problemType = Mapper<ProblemTypes>().map(JSONObject: results.resultDictionary)
+                problemTypes.append(problemType!)
+            }
+        } catch{
+            print("Error retrieving section from database")
+        }
+        database.close()
+        return problemTypes
+    }
+}
+
 

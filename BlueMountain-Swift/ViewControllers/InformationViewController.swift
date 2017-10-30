@@ -16,6 +16,7 @@ class InformationViewController: CustomRevealViewController {
     @IBOutlet weak var tableView: UITableView!
     var pages : [Pages] = []
     var sections : [Sections] = []
+    let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,20 +26,19 @@ class InformationViewController: CustomRevealViewController {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "InfoCell")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SectionsCell")
         
-        
-        let query = "Select * from pages where section_id in (1,5)"
-        let pagesFromDB = DBManager.sharedInstance.getPagesFromDatabase(withQuery: query)
-        
-        if (pagesFromDB?.isEmpty == true){
+        if (self.pages.isEmpty == true){
             
-            self.getPagesFromServer(withSectionIds: [1,5], completion: {
+            let query = "Select * from pages where section_id in (1,5)"
+            let pagesFromDB = DBManager.sharedInstance.getPagesFromDatabase(withQuery: query)
+            
+            if (pagesFromDB?.isEmpty == true){
+                
+                self.getPagesFromServer(withSectionIds: [1,5])
+                
+            } else{
                 self.getRequiredDataFromDatabase()
                 self.tableView.reloadData()
-            })
-            
-        } else{
-            self.getRequiredDataFromDatabase()
-            self.tableView.reloadData()
+            }
         }
     }
     
@@ -61,11 +61,13 @@ class InformationViewController: CustomRevealViewController {
 // MARK: - Get data from server
 extension InformationViewController {
     
-    func getPagesFromServer(withSectionIds section_ids : [Int], completion : () -> ()) {
+    func getPagesFromServer(withSectionIds section_ids : [Int]) {
         
         let getPagesBySectionIdURL = "\(BASE_URL.appending(GET_PAGES_BY_SECTION_ID_PATH))"
         
         for section_id in section_ids{
+            
+            dispatchGroup.enter()
             
             let param = [
                 "section_id" : section_id
@@ -91,13 +93,19 @@ extension InformationViewController {
                     let nSection = Mapper<Sections>().map(JSONObject: section)
                     DBManager.sharedInstance.pushSingleSectionToDatabase(withSection: nSection!)
                 }
+                sSelf.dispatchGroup.leave()
             })
-            completion()
+        }
+        
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            self.getRequiredDataFromDatabase()
+            self.tableView.reloadData()
         }
     }
     
     func getDetailsPageFromServer(withPageId page_id : String) {
         
+        self.dispatchGroup.enter()
         let getPageDetailsURL = "\(BASE_URL.appending(GET_PAGES_DETAILS_PATH))"
         let param = [
             "page_id" : page_id
@@ -108,7 +116,11 @@ extension InformationViewController {
             let obtainedData = response.result.value as? [String : Any]
             let obtainedPage = obtainedData?["page_detail"]
             if let page = Mapper<Pages>().map(JSONObject: obtainedPage) {
+                if(page.sectionId != "5"){
+                    self.pages.append(page)
+                }
                 DBManager.sharedInstance.pushSinglePageToDatabase(withPage: page)
+                self.dispatchGroup.leave()
             }
         })
     }
@@ -158,7 +170,7 @@ extension InformationViewController : UITableViewDataSource {
 //
 // MARK: - TableView Delegate functions
 extension InformationViewController : UITableViewDelegate {
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if(indexPath.row < self.pages.count){

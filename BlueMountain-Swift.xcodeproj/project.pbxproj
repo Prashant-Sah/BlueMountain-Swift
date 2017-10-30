@@ -10,7 +10,18 @@
 		64FDB45A3EF9507DD2104D4F /* Pods_BlueMountain_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C088FAB99606AFD4ED3510A4 /* Pods_BlueMountain_Swift.framework */; };
 		7B01166F1F8F238400BCB7E2 /* CustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B01166E1F8F238400BCB7E2 /* CustomNavBar.swift */; };
 		7B0116711F8F23B000BCB7E2 /* CustomNavBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B0116701F8F23B000BCB7E2 /* CustomNavBar.xib */; };
+		7B13228B1F9F28C9002F3971 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B13228A1F9F28C9002F3971 /* UserInfo.swift */; };
+		7B2F0F051FA0907C00577BE6 /* FeedbackInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2F0F041FA0907C00577BE6 /* FeedbackInfo.swift */; };
+		7B505D181F9F59D70099B4E5 /* Alerter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B505D171F9F59D70099B4E5 /* Alerter.swift */; };
+		7B7722F01FA3145300CD63B4 /* StreetGarbageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7722EF1FA3145300CD63B4 /* StreetGarbageInfo.swift */; };
+		7B7722F31FA3203600CD63B4 /* StreetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7722F11FA3203600CD63B4 /* StreetTableViewCell.swift */; };
+		7B7722F41FA3203600CD63B4 /* StreetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7722F21FA3203600CD63B4 /* StreetTableViewCell.xib */; };
+		7B7722F61FA34F2100CD63B4 /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7722F51FA34F2100CD63B4 /* CustomCalendarView.swift */; };
+		7B7722F81FA34F9100CD63B4 /* CustomCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7722F71FA34F9100CD63B4 /* CustomCalendarView.xib */; };
+		7B77E34C1FA6CFA8004D34DD /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77E34B1FA6CFA8004D34DD /* InitialViewController.swift */; };
 		7B7CD95E1F94C00E003FE148 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7CD95D1F94C00E003FE148 /* MapKit.framework */; };
+		7BAF27271F9DE8E300D38D86 /* ProblemTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF27261F9DE8E300D38D86 /* ProblemTypes.swift */; };
+		7BB06B011FA046660030F701 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB06B001FA046660030F701 /* LocationViewController.swift */; };
 		7BC69CEA1F8E16B000193E42 /* PageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC69CE91F8E16B000193E42 /* PageDetailsViewController.swift */; };
 		7BCB17A91F8DDDCE00FC1282 /* WasteMaterialsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB17A71F8DDDCE00FC1282 /* WasteMaterialsTableViewCell.swift */; };
 		7BCB17AA1F8DDDCE00FC1282 /* WasteMaterialsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BCB17A81F8DDDCE00FC1282 /* WasteMaterialsTableViewCell.xib */; };
@@ -42,8 +53,19 @@
 		5676E467FC502C94384C2A7E /* Pods-BlueMountain-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueMountain-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueMountain-Swift/Pods-BlueMountain-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		7B01166E1F8F238400BCB7E2 /* CustomNavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavBar.swift; sourceTree = "<group>"; };
 		7B0116701F8F23B000BCB7E2 /* CustomNavBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomNavBar.xib; sourceTree = "<group>"; };
+		7B13228A1F9F28C9002F3971 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		7B277F5E1F94C79B00588B27 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		7B2F0F041FA0907C00577BE6 /* FeedbackInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackInfo.swift; sourceTree = "<group>"; };
+		7B505D171F9F59D70099B4E5 /* Alerter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerter.swift; sourceTree = "<group>"; };
+		7B7722EF1FA3145300CD63B4 /* StreetGarbageInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreetGarbageInfo.swift; sourceTree = "<group>"; };
+		7B7722F11FA3203600CD63B4 /* StreetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreetTableViewCell.swift; sourceTree = "<group>"; };
+		7B7722F21FA3203600CD63B4 /* StreetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreetTableViewCell.xib; sourceTree = "<group>"; };
+		7B7722F51FA34F2100CD63B4 /* CustomCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
+		7B7722F71FA34F9100CD63B4 /* CustomCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalendarView.xib; sourceTree = "<group>"; };
+		7B77E34B1FA6CFA8004D34DD /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		7B7CD95D1F94C00E003FE148 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7BAF27261F9DE8E300D38D86 /* ProblemTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemTypes.swift; sourceTree = "<group>"; };
+		7BB06B001FA046660030F701 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		7BC69CE91F8E16B000193E42 /* PageDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageDetailsViewController.swift; sourceTree = "<group>"; };
 		7BCB17A71F8DDDCE00FC1282 /* WasteMaterialsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WasteMaterialsTableViewCell.swift; sourceTree = "<group>"; };
 		7BCB17A81F8DDDCE00FC1282 /* WasteMaterialsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WasteMaterialsTableViewCell.xib; sourceTree = "<group>"; };
@@ -116,13 +138,17 @@
 			path = WasteMaterials;
 			sourceTree = "<group>";
 		};
-		7BCB17B01F8E14C300FC1282 /* Problems */ = {
+		7BCB17B01F8E14C300FC1282 /* Report Problem */ = {
 			isa = PBXGroup;
 			children = (
 				7BCB17B11F8E14C300FC1282 /* FeedbackViewController.swift */,
 				7BCB17B21F8E14C300FC1282 /* PagingViewController.swift */,
 				7BCB17B41F8E14C300FC1282 /* ProblemsViewController.swift */,
+				7B13228A1F9F28C9002F3971 /* UserInfo.swift */,
+				7BB06B001FA046660030F701 /* LocationViewController.swift */,
+				7B2F0F041FA0907C00577BE6 /* FeedbackInfo.swift */,
 			);
+			name = "Report Problem";
 			path = Problems;
 			sourceTree = "<group>";
 		};
@@ -191,6 +217,10 @@
 				7BCB17A81F8DDDCE00FC1282 /* WasteMaterialsTableViewCell.xib */,
 				7B01166E1F8F238400BCB7E2 /* CustomNavBar.swift */,
 				7B0116701F8F23B000BCB7E2 /* CustomNavBar.xib */,
+				7B7722F11FA3203600CD63B4 /* StreetTableViewCell.swift */,
+				7B7722F21FA3203600CD63B4 /* StreetTableViewCell.xib */,
+				7B7722F51FA34F2100CD63B4 /* CustomCalendarView.swift */,
+				7B7722F71FA34F9100CD63B4 /* CustomCalendarView.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -200,6 +230,7 @@
 			children = (
 				8F9B91B41F173D6300515365 /* Colors.swift */,
 				8FC3294E1F20AF4900EAAD3B /* APICaller.swift */,
+				7B505D171F9F59D70099B4E5 /* Alerter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -209,6 +240,8 @@
 			children = (
 				8FC3294A1F20823600EAAD3B /* Pages.swift */,
 				8FAA68A61F678ED60096ABC0 /* Sections.swift */,
+				7BAF27261F9DE8E300D38D86 /* ProblemTypes.swift */,
+				7B7722EF1FA3145300CD63B4 /* StreetGarbageInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -216,12 +249,13 @@
 		8FFEBA5C1F1640ED0063DB34 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7BCB17B01F8E14C300FC1282 /* Problems */,
+				7BCB17B01F8E14C300FC1282 /* Report Problem */,
 				7BCB17AB1F8E126300FC1282 /* WasteMaterials */,
 				8FFEBA621F1641980063DB34 /* CalendarViewController.swift */,
 				8FAB64311F1C705200AB77BE /* InformationViewController.swift */,
 				8F25F8E31F1E01E3004140E3 /* CustomRevealViewController.swift */,
 				8F25F8E51F1E2AA3004140E3 /* SideBarViewController.swift */,
+				7B77E34B1FA6CFA8004D34DD /* InitialViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -300,6 +334,8 @@
 				8FBEF7091F18959700096AE2 /* CustomCalendarCell.xib in Resources */,
 				8FC329491F2058E300EAAD3B /* Assets.xcassets in Resources */,
 				7B0116711F8F23B000BCB7E2 /* CustomNavBar.xib in Resources */,
+				7B7722F41FA3203600CD63B4 /* StreetTableViewCell.xib in Resources */,
+				7B7722F81FA34F9100CD63B4 /* CustomCalendarView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,21 +420,30 @@
 				8FFEBA5F1F1640ED0063DB34 /* CustomCalendarCell.swift in Sources */,
 				7BC69CEA1F8E16B000193E42 /* PageDetailsViewController.swift in Sources */,
 				8FC3294B1F20823600EAAD3B /* Pages.swift in Sources */,
+				7B13228B1F9F28C9002F3971 /* UserInfo.swift in Sources */,
 				7B01166F1F8F238400BCB7E2 /* CustomNavBar.swift in Sources */,
 				7BCB17B61F8E14C300FC1282 /* PagingViewController.swift in Sources */,
 				8FC3294D1F2094BE00EAAD3B /* Constants.swift in Sources */,
+				7B7722F31FA3203600CD63B4 /* StreetTableViewCell.swift in Sources */,
+				7BB06B011FA046660030F701 /* LocationViewController.swift in Sources */,
 				8FB5D9381F1DC08100CC10B8 /* CustomTabBarController1.swift in Sources */,
 				7BCB17AD1F8E126300FC1282 /* WasteMaterialsViewController.swift in Sources */,
 				7BCB17B51F8E14C300FC1282 /* FeedbackViewController.swift in Sources */,
+				7B77E34C1FA6CFA8004D34DD /* InitialViewController.swift in Sources */,
 				8FC3294F1F20AF4900EAAD3B /* APICaller.swift in Sources */,
 				8FAA68A71F678ED70096ABC0 /* Sections.swift in Sources */,
 				8F25F8E61F1E2AA4004140E3 /* SideBarViewController.swift in Sources */,
 				7BCB17B81F8E14C300FC1282 /* ProblemsViewController.swift in Sources */,
+				7B7722F61FA34F2100CD63B4 /* CustomCalendarView.swift in Sources */,
+				7B7722F01FA3145300CD63B4 /* StreetGarbageInfo.swift in Sources */,
 				8FD1866C1F25BFF600EA5146 /* DBManager.swift in Sources */,
+				7BAF27271F9DE8E300D38D86 /* ProblemTypes.swift in Sources */,
+				7B2F0F051FA0907C00577BE6 /* FeedbackInfo.swift in Sources */,
 				8F9B91B51F173D6300515365 /* Colors.swift in Sources */,
 				8FFEBA631F1641980063DB34 /* CalendarViewController.swift in Sources */,
 				8FFEBA431F163FFE0063DB34 /* AppDelegate.swift in Sources */,
 				8FAB64321F1C705200AB77BE /* InformationViewController.swift in Sources */,
+				7B505D181F9F59D70099B4E5 /* Alerter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

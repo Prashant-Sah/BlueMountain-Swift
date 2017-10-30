@@ -25,10 +25,10 @@ class PagingViewController: UIPageViewController, SWRevealViewControllerDelegate
         
         self.dataSource = self
         if let firstViewController = orderedViewControllers.first{
-        self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
+            self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
         
-        revealViewController().panGestureRecognizer().isEnabled = false
+        revealViewController().panGestureRecognizer().isEnabled = true
         
         self.navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "navBar"), for: UIBarMetrics.default)
         
@@ -87,8 +87,6 @@ extension PagingViewController: UIPageViewControllerDataSource {
         }else{
             return nil //orderedViewControllers[viewControllerIndex]
         }
-        
-        
     }
     
 }

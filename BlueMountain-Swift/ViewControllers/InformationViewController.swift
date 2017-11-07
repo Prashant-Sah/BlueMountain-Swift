@@ -26,6 +26,13 @@ class InformationViewController: CustomRevealViewController {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "InfoCell")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SectionsCell")
         
+        
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        CustomNavigationBar.titleText = "More-Info"
         if (self.pages.isEmpty == true){
             
             let query = "Select * from pages where section_id in (1,5)"
@@ -40,11 +47,6 @@ class InformationViewController: CustomRevealViewController {
                 self.tableView.reloadData()
             }
         }
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // CustomNavigationBar.titleText = "More-Info"
     }
     
     func getRequiredDataFromDatabase(){

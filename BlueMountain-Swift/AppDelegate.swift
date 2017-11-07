@@ -19,14 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         DBManager.init()
-        NotificationCenter.default.addObserver(self,  selector: #selector(CustomTabBarController1.setTabBarItemsBasedOnLocation), name: locationSelectedNotificationKey, object: nil)
-        if UserDefaults.standard.value(forKey: "Location") == nil{
-            NotificationCenter.default.post(name: locationSelectedNotificationKey, object: nil)
-        }
-        
+                
         let story = UIStoryboard(name: "Main", bundle: nil)
         let sidebarVC = story.instantiateViewController(withIdentifier: "SideBarViewController") as! SideBarViewController
-        let customTabBarVC = story.instantiateViewController(withIdentifier: "CustomTabBarController1") as! CustomTabBarController1
+        let customTabBarVC = story.instantiateViewController(withIdentifier: "CustomTabBar") as! CustomTabBarController
         let revealViewController = SWRevealViewController.init(rearViewController: sidebarVC, frontViewController: customTabBarVC)
         window?.rootViewController = revealViewController
         window?.makeKeyAndVisible()
@@ -34,10 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         
         
         return true
-    }
-    
-    func actWhenNotified(){
-        print("Notifed")
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

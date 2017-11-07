@@ -44,6 +44,12 @@ class CalendarViewController : CustomRevealViewController{
         self.revealViewController().panGestureRecognizer()
         self.setCalendarLayout()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        CustomNavigationBar.titleText = "Waste Info App"
+        
         self.binPages = self.getDataFromDatabase().0
         self.tableViewPages = self.getDataFromDatabase().1
         
@@ -53,10 +59,6 @@ class CalendarViewController : CustomRevealViewController{
         }else{
             self.tableView.reloadData()
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //CustomNavigationBar.titleText = "Waste Info App"
     }
 }
 
@@ -244,6 +246,7 @@ extension CalendarViewController {
             sSelf.tableView.reloadData()
         })
     }
+    
     
     func getDataFromDatabase() -> ([Pages],[Pages]){
         

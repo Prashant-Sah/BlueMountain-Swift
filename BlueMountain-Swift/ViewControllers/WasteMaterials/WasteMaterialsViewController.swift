@@ -12,6 +12,8 @@ import ObjectMapper
 
 class WasteMaterialsViewController: CustomRevealViewController {
     
+    let refreshControl = UIRefreshControl()
+    
     @IBOutlet weak var tableView: UITableView!
     
     var pages : [Pages] = []
@@ -23,24 +25,34 @@ class WasteMaterialsViewController: CustomRevealViewController {
         self.tableView.delegate = self
         self.tableView.register(UINib(nibName: "WasteMaterialsTableViewCell", bundle: nil) ,forCellReuseIdentifier: "WasteCell")
         
-        //self.revealViewController().panGestureRecognizer()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
         
-        let query = "Select * from pages where section_id = 2"
-        let pagesFromDB = DBManager.sharedInstance.getPagesFromDatabase(withQuery: query)
+        self.revealViewController().panGestureRecognizer()
         
-        if(pagesFromDB?.count == 0){
-            self.getDataFromServer()
-        }else{
-            pages = pagesFromDB!
-            self.tableView.reloadData()
-        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(deActivateRevealAction) , name: locationSelectedNotificationKey, object: nil)
     }
     
     
+    func refresh() {
+        getDataFromServer()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-        //CustomNavigationBar.titleText = "Materials"
+        
+        let query = "Select * from pages where section_id = 2"
+        let pagesFromDB = DBManager.sharedInstance.getPagesFromDatabase(withQuery: query)
+        
+        if(pagesFromDB?.count == 0){
+        getDataFromServer()
+        }else{
+        pages = pagesFromDB!
+        self.tableView.reloadData()
+        }
+
+        CustomNavigationBar.titleText = "Materials"
     }
 }
 
@@ -51,29 +63,18 @@ extension WasteMaterialsViewController {
     
     func getDataFromServer() {
         
-        let wasteMaterialsURL = "\(BASE_URL.appending(WASTE_MATERAILS_PATH))"
-        
         let param = [
             "bin_type" : "0"
         ]
+        APICaller().getWasteMaterials(withParameters: param, withIndicatorMessage: "Getting Waste Materials from server") { (list) in
+            
+            self.refreshControl.endRefreshing()
+            self.pages = Mapper<Pages>().mapArray(JSONObject: list)!
+            self.tableView.reloadData()
+            DBManager.sharedInstance.pushPagesToDatabase(withArray: self.pages)
+            
+        }
         
-        Alamofire.request(wasteMaterialsURL, method: .post, parameters: param).responseJSON(completionHandler: { [weak self] response in
-            
-            guard let sSelf = self  else {
-                return
-            }
-            
-            let obtainedResponse = response.result.value as! [String:Any]
-            print(obtainedResponse["code"]!)
-            let wasteMaterialsData = obtainedResponse["list"] as! NSArray
-            
-            sSelf.pages = Mapper<Pages>().mapArray(JSONObject: wasteMaterialsData)!
-            
-            sSelf.tableView.reloadData()
-            DBManager.sharedInstance.pushPagesToDatabase(withArray: sSelf.pages)
-            
-        })
-
     }
 }
 

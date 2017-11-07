@@ -17,10 +17,12 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         configureView()
-       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        CustomNavigationBar.titleText = "Blue Mountain"
     }
     
     func configureView(){
@@ -45,9 +47,9 @@ class InitialViewController: UIViewController {
     
     func goToProblemsVC(){
         
-        let tabBarController = self.tabBarController as? CustomTabBarController1
-        tabBarController?.selectedIndex = 2
-        
+        let tabVC = self.tabBarController as! CustomTabBarController
+        tabVC.selectedIndex = 2
+        tabVC.toggleButtonImages(withIndex: 2)
     }
    
 }

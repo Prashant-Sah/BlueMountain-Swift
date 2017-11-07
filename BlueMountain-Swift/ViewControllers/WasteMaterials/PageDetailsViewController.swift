@@ -42,12 +42,14 @@ class PageDetailsViewController: UIViewController, UIWebViewDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if((mapView) != nil){
+        if mapView != nil{
             self.mapView.removeFromSuperview()
             self.mapView = nil
         }
+        if pageDetailsView != nil{
         self.pageDetailsView.removeFromSuperview()
         self.pageDetailsView = nil
+        }
     }
     
 }

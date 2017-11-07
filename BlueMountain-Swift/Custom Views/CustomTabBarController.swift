@@ -1,5 +1,5 @@
 //
-//  CustomTabBarController1.swift
+//  CustomTabBarController.swift
 //  BlueMountain-Swift
 //
 //  Created by Prashant Sah on 7/18/17.
@@ -9,7 +9,7 @@
 import UIKit
 import SWRevealViewController
 
-class CustomTabBarController1: UITabBarController, SWRevealViewControllerDelegate{
+class CustomTabBarController: UITabBarController, SWRevealViewControllerDelegate{
     
     var button1 : UIButton!
     var button2 : UIButton!
@@ -24,22 +24,23 @@ class CustomTabBarController1: UITabBarController, SWRevealViewControllerDelegat
         
         super.viewDidLoad()
         
-       
         let wasteMaterialsVC = self.storyboard?.instantiateViewController(withIdentifier: "WasteMaterialsVC") as! WasteMaterialsViewController
         let problemsVC = self.storyboard?.instantiateViewController(withIdentifier: "ProblemsVC") as! ProblemsViewController
         let informationVC = self.storyboard?.instantiateViewController(withIdentifier: "InformationViewController") as! InformationViewController
         
-        NotificationCenter.default.addObserver(self, selector: #selector(CustomTabBarController1.setTabBarItemsBasedOnLocation) , name: locationSelectedNotificationKey , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CustomTabBarController.setTabBarItemsBasedOnLocation) , name: locationSelectedNotificationKey , object: nil)
         
+        /*
         if UserDefaults.standard.value(forKey: "Location") != nil {
-             let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as! CalendarViewController
+            let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as! CalendarViewController
             self.setViewControllers([calendarVC, wasteMaterialsVC, problemsVC, informationVC], animated: true)
             
         }else{
             let initialVC = self.storyboard?.instantiateViewController(withIdentifier: "InitialVC") as! InitialViewController
             self.setViewControllers([initialVC, wasteMaterialsVC, problemsVC, informationVC], animated: true)
-
+            
         }
+ */
         
         self.setTabBarButtons()
         
@@ -85,14 +86,19 @@ class CustomTabBarController1: UITabBarController, SWRevealViewControllerDelegat
     func goToViewControllers(sender : UIButton){
         
         self.selectedIndex = sender.tag
+        toggleButtonImages(withIndex: self.selectedIndex)
         
-        for index in 0..<4{
-            if(sender.tag == index){
-                tabButtons[index].setImage(buttonOnImages[index], for: .normal)
+    }
+    
+    func toggleButtonImages(withIndex index : Int){
+        for indexes in 0..<4{
+            if(index == indexes){
+                tabButtons[indexes].setImage(buttonOnImages[indexes], for: .normal)
             }else{
-                tabButtons[index].setImage(buttonOffImages[index], for: .normal)
+                tabButtons[indexes].setImage(buttonOffImages[indexes], for: .normal)
             }
         }
+        
     }
     
     func setTabBarItemsBasedOnLocation(){

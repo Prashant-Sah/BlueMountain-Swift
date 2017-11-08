@@ -12,23 +12,27 @@ import Alamofire
 
 class APICaller {
     
+    static let shared = APICaller()
+    
     /// <#Description#>
     ///
     /// - Parameter msg: <#msg description#>
-    func showIndicator(withMessage msg : String){
+    func showIndicator(withMessage msg : String?){
         
         DispatchQueue.global(qos: .userInitiated).async {
             DispatchQueue.main.async {
                 
-                let visible = VisibleController().get()
-                let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-                let indicator = mainStoryBoard.instantiateViewController(withIdentifier: "ProgressIndicatorVC") as? ProgressIndicatorViewController
-                indicator?.message = msg
-                
-                indicator?.modalPresentationStyle = .custom
-                indicator?.modalTransitionStyle = .crossDissolve
-                
-                visible.present(indicator!, animated: true, completion: nil)
+                if let msg = msg {
+                    let visible = VisibleController().get()
+                    let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+                    let indicator = mainStoryBoard.instantiateViewController(withIdentifier: "ProgressIndicatorVC") as? ProgressIndicatorViewController
+                    indicator?.message = msg
+                    
+                    indicator?.modalPresentationStyle = .custom
+                    indicator?.modalTransitionStyle = .crossDissolve
+                    
+                    visible.present(indicator!, animated: true, completion: nil)
+                }
             }
         }
     }
@@ -41,7 +45,7 @@ class APICaller {
         visible.dismiss(animated: true, completion: nil)
         
     }
-
+    
     
     
     /// <#Description#>
@@ -110,10 +114,10 @@ class APICaller {
 
 extension APICaller {
     
-    func getSectionPages(withParameters parameters : [String: Any],withIndicatorMessage msg : String, completion : @escaping ( _ pages : [Any], _ sections : [Any]) -> () ){
+    func getSectionPages(withParameters parameters : [String: Any],withIndicatorMessage msg : String?, completion : @escaping ( _ pages : [Any], _ sections : [Any]) -> () ){
         
-        showIndicator(withMessage: msg)
-        Alamofire.request(Router.getWasteMaterials(parameters)).responseJSON { (dataResponse) in
+        showIndicator(withMessage: msg ?? nil)
+        Alamofire.request(Router.getSectionPages(parameters)).responseJSON { (dataResponse) in
             self.handleResponse(withResponse: dataResponse, lookFor: ["pages","sections"], completion: { (resultArray) in
                 let pages = resultArray.first
                 let sections = resultArray.last
@@ -122,21 +126,22 @@ extension APICaller {
         }
     }
     
-    func getPageDetail(withParameters parameters : [String: Any],withIndicatorMessage msg : String, completion : @escaping ( _ page : [Any]) -> ()){
+    func getPageDetail(withParameters parameters : [String: Any],withIndicatorMessage msg : String?, completion : @escaping ( _ page : [String : Any]) -> ()){
         
-        showIndicator(withMessage: msg)
+        showIndicator(withMessage: msg ?? nil)
         Alamofire.request(Router.getPageById(parameters)).responseJSON { (dataResponse) in
             self.handleResponse(withResponse: dataResponse, lookFor: ["page_detail"], completion: { (resultArray) in
-                completion(resultArray.first as! [Any])
+                //gives single dictionary here not arrays of dictionary
+                completion(resultArray.first as! [String : Any])
             })
         }
     }
     
     
     
-    func getWasteMaterials(withParameters parameters : [String: Any],withIndicatorMessage msg : String, completion : @escaping ( _ list : [Any]) -> () ){
+    func getWasteMaterials(withParameters parameters : [String: Any],withIndicatorMessage msg : String?, completion : @escaping ( _ list : [Any]) -> () ){
         
-        showIndicator(withMessage: msg)
+        showIndicator(withMessage: msg ?? nil)
         Alamofire.request(Router.getWasteMaterials(parameters)).responseJSON { (dataResponse) in
             self.handleResponse(withResponse: dataResponse, lookFor: ["list"], completion: { (resultArray) in
                 completion(resultArray.first as! [Any])
@@ -144,9 +149,9 @@ extension APICaller {
         }
     }
     
-    func getProblemTypes(withParameters parameters : [String : Any], withIndicatorMessage msg : String, completion : @escaping ( _ problems : [Any]) -> ()){
+    func getProblemTypes(withParameters parameters : [String : Any], withIndicatorMessage msg : String?, completion : @escaping ( _ problems : [Any]) -> ()){
         
-        showIndicator(withMessage: msg)
+        showIndicator(withMessage: msg ?? nil)
         Alamofire.request(Router.getProblemTypes(parameters)).responseJSON { (dataResponse) in
             self.handleResponse(withResponse: dataResponse, lookFor: ["problem_types"], completion: { (resultArray) in
                 completion(resultArray.first as! [Any])
@@ -156,9 +161,9 @@ extension APICaller {
     
     
     
-    func autoSuggestStreet(withParameters parameters : [String : Any], withIndicatorMessage msg : String, completion : @escaping ( _ streets : [String]) -> ()){
+    func autoSuggestStreet(withParameters parameters : [String : Any], withIndicatorMessage msg : String?, completion : @escaping ( _ streets : [String]) -> ()){
         
-        showIndicator(withMessage: msg)
+        showIndicator(withMessage: msg ?? nil)
         Alamofire.request(Router.suggestStreet(parameters)).responseJSON { (dataResponse) in
             self.handleResponse(withResponse: dataResponse, lookFor: ["streets"], completion: { (resultArray) in
                 completion(resultArray.first as! [String])
@@ -166,19 +171,22 @@ extension APICaller {
         }
     }
     
-    func searchLocationwith(Parameters parameters : [String : Any], withIndicatorMessage msg : String, completion : @escaping ( _ results : [Any]) -> ()){
+    func searchLocation(withParameters parameters : [String : Any], withIndicatorMessage msg : String?, completion : @escaping ( _ total : String, _ results : [Any]) -> ()){
         
-        showIndicator(withMessage: msg)
+        showIndicator(withMessage: msg ?? nil)
         Alamofire.request(Router.searchLocation(parameters)).responseJSON { (dataResponse) in
-            self.handleResponse(withResponse: dataResponse, lookFor: ["results"], completion: { (resultArray) in
-                completion(resultArray.first as! [Any])
+            self.handleResponse(withResponse: dataResponse, lookFor: ["total","results" ], completion: { (resultArray) in
+                let total = resultArray.first
+                let results = resultArray.last
+                completion(total as! String, results as! [Any])
+                
             })
         }
     }
     
-    func getSuburbs(withParameters parameters : [String : Any],withIndicatorMessage msg : String, completion : @escaping ( _ suburbs : [String]) -> () ){
+    func getSuburbs(withParameters parameters : [String : Any],withIndicatorMessage msg : String?, completion : @escaping ( _ suburbs : [String]) -> () ){
         
-        showIndicator(withMessage: msg)
+        showIndicator(withMessage: msg ?? nil)
         Alamofire.request(Router.suburbSearch(parameters)).responseJSON { (dataResponse) in
             self.handleResponse(withResponse: dataResponse, lookFor: ["suburbs"], completion: { (resultArray) in
                 completion(resultArray.first as! [String])
@@ -186,7 +194,7 @@ extension APICaller {
         }
     }
     
-
+    
 }
 
 

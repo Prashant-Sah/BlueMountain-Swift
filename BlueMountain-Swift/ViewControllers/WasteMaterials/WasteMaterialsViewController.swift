@@ -42,16 +42,18 @@ class WasteMaterialsViewController: CustomRevealViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let query = "Select * from pages where section_id = 2"
-        let pagesFromDB = DBManager.sharedInstance.getPagesFromDatabase(withQuery: query)
-        
-        if(pagesFromDB?.count == 0){
-        getDataFromServer()
-        }else{
-        pages = pagesFromDB!
-        self.tableView.reloadData()
+        if !(pages.count > 0){
+            let query = "Select * from pages where section_id = 2"
+            let pagesFromDB = DBManager.sharedInstance.getPagesFromDatabase(withQuery: query)
+            
+            if(pagesFromDB?.count == 0){
+                getDataFromServer()
+            }else{
+                pages = pagesFromDB!
+                self.tableView.reloadData()
+            }
         }
-
+        
         CustomNavigationBar.titleText = "Materials"
     }
 }

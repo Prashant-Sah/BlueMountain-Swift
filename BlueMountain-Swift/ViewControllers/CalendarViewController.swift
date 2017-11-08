@@ -1,3 +1,5 @@
+
+
 //
 //  CalendarViewController.swift
 //  BlueMountain-Swift
@@ -27,10 +29,12 @@ class CalendarViewController : CustomRevealViewController{
     @IBOutlet weak var recyclingButton: UIButton!
     @IBOutlet weak var setReminderButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var leftButton: UIButton!
     
     var binPages : [Pages] = []
     var tableViewPages : [Pages] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +47,7 @@ class CalendarViewController : CustomRevealViewController{
         
         self.revealViewController().panGestureRecognizer()
         self.setCalendarLayout()
+        
         
         
     }
@@ -120,6 +125,24 @@ extension CalendarViewController : FSCalendarDelegateAppearance{
 // MARK: - Button Handlers
 extension CalendarViewController {
     
+    @IBAction func rightButtonClicked(_ sender: UIButton) {
+        
+        var dateComponents = DateComponents()
+        dateComponents.month = 1
+        let nextMonth = calendar.gregorian.date(byAdding: dateComponents, to: calendar.currentPage)
+        calendar.setCurrentPage(nextMonth!, animated: true)
+    }
+    
+    @IBAction func leftButtonClicked(_ sender: UIButton) {
+        
+        var dateComponents = DateComponents()
+        dateComponents.month = -1
+        let previousMonth = calendar.gregorian.date(byAdding: dateComponents, to: calendar.currentPage)
+        calendar.setCurrentPage(previousMonth!, animated: true)
+    }
+    
+    
+    
     @IBAction func stackButtonsPressed(sender : UIButton){
         
         if(sender.tag != 0 && sender.tag <= 3){
@@ -194,58 +217,39 @@ extension CalendarViewController {
     
     func getBinPagesFromServer() {
         
-        let getPagesBySectionIdURL = BASE_URL.appending(GET_PAGES_BY_SECTION_ID_PATH)
-        
         let param = [
             "section_id" : "3",
             "calendar_other" : "1"
         ]
         
-        Alamofire.request(getPagesBySectionIdURL, method: .post, parameters: param).responseJSON(completionHandler: { [weak self] response in
-            
-            guard let sSelf = self  else {
-                return
+        APICaller.shared.getSectionPages(withParameters: param, withIndicatorMessage: nil) { (pages, sections) in
+            if pages.count > 0 {
+                DBManager.sharedInstance.pushPagesToDatabase(withArray: self.binPages)
+                self.binPages = Mapper<Pages>().mapArray(JSONObject: pages)!
             }
-            
-            let obtainedResponse = response.result.value as! Dictionary<String,Any>
-
-            let data = obtainedResponse["pages"] as! [[String: Any]]
-            sSelf.binPages = Mapper<Pages>().mapArray(JSONObject: data)!
-            
-            DBManager.sharedInstance.pushPagesToDatabase(withArray: sSelf.binPages)
-        })
+        }
         
     }
     
     func getTableViewPagesFromServer(){
-        
-        
-        let getPagesBySectionIdURL = "\(BASE_URL.appending(GET_PAGES_BY_SECTION_ID_PATH))"
         
         let param = [
             "section_id" : "3",
             "calendar_other" : "2"
         ]
         
-        Alamofire.request(getPagesBySectionIdURL, method: .post, parameters: param).responseJSON(completionHandler: { [weak self] response in
+        APICaller.shared.getSectionPages(withParameters: param, withIndicatorMessage: nil) { (pages, sections) in
             
-            guard let sSelf = self  else {
-                return
+            if pages.count > 0 {
+                self.tableViewPages = Mapper<Pages>().mapArray(JSONObject: pages)!
+                DBManager.sharedInstance.pushPagesToDatabase(withArray: self.binPages)
+                self.tableViewPages = self.getDataFromDatabase().1
+                self.tableView.reloadData()
             }
-            
-            let obtainedResponse = response.result.value as! Dictionary<String, Any>
-            
-            let data = obtainedResponse["pages"] as! NSArray
-            
-            sSelf.tableViewPages = Mapper<Pages>().mapArray(JSONObject: data)!
-            
-            DBManager.sharedInstance.pushPagesToDatabase(withArray: sSelf.tableViewPages)
-            //sSelf.tableView.reloadData()
-            sSelf.binPages = sSelf.getDataFromDatabase().0
-            sSelf.tableViewPages = sSelf.getDataFromDatabase().1
-            sSelf.tableView.reloadData()
-        })
+        }
+        
     }
+ 
     
     
     func getDataFromDatabase() -> ([Pages],[Pages]){

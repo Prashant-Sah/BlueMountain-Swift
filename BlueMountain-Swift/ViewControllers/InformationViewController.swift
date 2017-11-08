@@ -26,7 +26,6 @@ class InformationViewController: CustomRevealViewController {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "InfoCell")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SectionsCell")
         
-        
     }
     
     
@@ -65,8 +64,6 @@ extension InformationViewController {
     
     func getPagesFromServer(withSectionIds section_ids : [Int]) {
         
-        let getPagesBySectionIdURL = "\(BASE_URL.appending(GET_PAGES_BY_SECTION_ID_PATH))"
-        
         for section_id in section_ids{
             
             dispatchGroup.enter()
@@ -75,27 +72,22 @@ extension InformationViewController {
                 "section_id" : section_id
             ]
             
-            Alamofire.request(getPagesBySectionIdURL, method: .post, parameters: param).responseJSON(completionHandler: { [weak self] response in
+            APICaller.shared.getSectionPages(withParameters: param, withIndicatorMessage: "Gathering Information ", completion: { (pages, sections) in
                 
-                guard let sSelf = self  else {
-                    return
+                for page in pages as! [[String:Any]]{
+                    let id = page["page_id"]
+                    self.getDetailsPageFromServer(withPageId: id as! String)
                 }
                 
-                let obtainedResponse = response.result.value as! Dictionary<String, Any>
-                
-                let moreInfoData = obtainedResponse["pages"] as! [[String:Any]]
-                
-                for data in moreInfoData{
-                    let id = data["page_id"]
-                    sSelf.getDetailsPageFromServer(withPageId: id as! String)
+                if sections.count > 0 {
+                    let moreInfoSections = sections as! [[String:Any]]
+                    for section in moreInfoSections{
+                        let nSection = Mapper<Sections>().map(JSONObject: section)
+                        DBManager.sharedInstance.pushSingleSectionToDatabase(withSection: nSection!)
+                    }
                 }
+                self.dispatchGroup.leave()
                 
-                let moreInfoSections = obtainedResponse["sections"] as! [[String:Any]]
-                for section in moreInfoSections{
-                    let nSection = Mapper<Sections>().map(JSONObject: section)
-                    DBManager.sharedInstance.pushSingleSectionToDatabase(withSection: nSection!)
-                }
-                sSelf.dispatchGroup.leave()
             })
         }
         
@@ -108,23 +100,20 @@ extension InformationViewController {
     func getDetailsPageFromServer(withPageId page_id : String) {
         
         self.dispatchGroup.enter()
-        let getPageDetailsURL = "\(BASE_URL.appending(GET_PAGES_DETAILS_PATH))"
         let param = [
             "page_id" : page_id
         ]
         
-        Alamofire.request(getPageDetailsURL, method: .post, parameters: param).responseJSON(completionHandler: {  response in
-            
-            let obtainedData = response.result.value as? [String : Any]
-            let obtainedPage = obtainedData?["page_detail"]
-            if let page = Mapper<Pages>().map(JSONObject: obtainedPage) {
+        APICaller.shared.getPageDetail(withParameters: param, withIndicatorMessage: nil) { (obtainedPage) in
+            if let page = Mapper<Pages>().map(JSONObject: obtainedPage){
                 if(page.sectionId != "5"){
                     self.pages.append(page)
                 }
                 DBManager.sharedInstance.pushSinglePageToDatabase(withPage: page)
                 self.dispatchGroup.leave()
             }
-        })
+        }
+        
     }
     
 }

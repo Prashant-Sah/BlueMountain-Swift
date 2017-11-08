@@ -107,7 +107,7 @@ extension SideBarViewController {
         for subView in view.subviews{
             subView.isUserInteractionEnabled = active ? false : true
             subView.alpha = active ? 0.5 : 1
-           
+            
         }
         streetTableView.isUserInteractionEnabled = active ? true : false
         streetTableView.alpha = 1.0
@@ -146,12 +146,19 @@ extension SideBarViewController : UITextFieldDelegate{
             let  char = string.cString(using: String.Encoding.utf8)!
             let isBackSpace = strcmp(char, "\\b")
             
-            if (isBackSpace == -92 && selectedStreetIndex != nil) {
-                print("Backspace was pressed")
+            if (isBackSpace == -92 ) { //&& selectedStreetIndex != nil
                 streetNameTextField.text = ""
                 selectedStreetIndex = nil
                 self.enableDisableSelectButton(withActiveState: false)
             }
+        }else if  textField == streetNameTextField{
+            let  char = string.cString(using: String.Encoding.utf8)!
+            let isBackSpace = strcmp(char, "\\b")
+            
+            if (isBackSpace == -92 ) { //&& selectedStreetIndex != nil
+                self.enableDisableSelectButton(withActiveState: false)
+            }
+
         }
         return true
     }
@@ -288,74 +295,71 @@ extension SideBarViewController{
     
     func getSuburbNames(){
         
-        let suburbSearchURL = BASE_URL.appending(SUBURB_SEARCH_PATH)
-        
         let params = [
             "submit" : "Submit"
         ]
         
-        Alamofire.request(suburbSearchURL, method: .post, parameters: params).responseJSON { (response) in
-            
-            if let responseDict = response.result.value as? [String: Any]{
-                if let suburbsArray = responseDict["suburbs"] as? [String]{
-                    self.suburbNames = suburbsArray
-                }
-            }else if let error = response.result.error{
-                print(error.localizedDescription)
-            }
+        APICaller.shared.getSuburbs(withParameters: params, withIndicatorMessage: nil) { (suburbs) in
+            self.suburbNames = suburbs
         }
+        
     }
     
     func getStreetNames(){
         
         self.streetNames?.removeAll()
         
-        let streetSearchURL = BASE_URL.appending(STREET_NAME_SUGGEST_PATH)
         let params = [
             "suburb" : selectedSuburbName!,
             ]
         
-        Alamofire.request(streetSearchURL, method: .post, parameters: params).responseJSON { (response) in
+        APICaller.shared.autoSuggestStreet(withParameters: params, withIndicatorMessage: nil) { (streets) in
             
-            if let responseDict = response.result.value as? [String: Any]{
-                if responseDict["code"] as? String == SUCCESS {
-                    if let streetsArray = responseDict["streets"] as? [String]{
-                        self.streetNames = streetsArray
-                    }
-                }else{
-                    print(responseDict["msg"]!)
-                }
-            }else if let error = response.result.error{
-                print(error.localizedDescription)
-            }
+            self.streetNames = streets
         }
+        
     }
     
     func getHouses(completion: @escaping () ->()){
         
-        let locationSearchURL = BASE_URL.appending(SEARCH_LOCATION_PATH)
-        let params = [
-            "suburb" : selectedSuburbName!,
-            "address" : selectedStreetName!
-        ]
-        print(params)
-        Alamofire.request(locationSearchURL, method: .post, parameters: params).responseJSON { (response) in
+        if selectedStreetName != "" || selectedSuburbName != ""{
             
-            if let responseDict = response.result.value as? [String : Any]{
-                if responseDict["code"] as! String == SUCCESS && responseDict["total"] as! String != "0" {
-                    
-                    self.streetsGarbageInfos = Mapper<StreetGarbageInfo>().mapArray(JSONObject: responseDict["results"])
+            let params = [
+                "suburb" : selectedSuburbName!,
+                "address" : selectedStreetName!
+            ]
+            print(params)
+            
+            APICaller.shared.searchLocation(withParameters: params, withIndicatorMessage: "Getting Locations for your data") { (count, results) in
+                
+                if count != "0" {
+                    self.streetsGarbageInfos = Mapper<StreetGarbageInfo>().mapArray(JSONObject : results)
                     completion()
-                    
-                }else{
-                    print("No Houses found")
                 }
-                
-                
-            }else if let error = response.result.error{
-                print(error.localizedDescription)
             }
+        }else{
+            
+            Alerter().showAlert(withMessage: "Looks like you have input garbage or nothing", alertTitle: "Error", alertActions: nil)
         }
+        /*
+         Alamofire.request(locationSearchURL, method: .post, parameters: params).responseJSON { (response) in
+         
+         if let responseDict = response.result.value as? [String : Any]{
+         if responseDict["code"] as! String == SUCCESS && responseDict["total"] as! String != "0" {
+         
+         self.streetsGarbageInfos = Mapper<StreetGarbageInfo>().mapArray(JSONObject: responseDict["results"])
+         completion()
+         
+         }else{
+         print("No Houses found")
+         }
+         
+         
+         }else if let error = response.result.error{
+         print(error.localizedDescription)
+         }
+         }
+         */
     }
     
     
@@ -367,6 +371,7 @@ extension SideBarViewController {
     @IBAction func selectButtonClicked(_ sender: UIButton) {
         
         self.getHouses {
+            print("pressed")
             self.streetTableView.frame.size.height = CGFloat(((self.streetsGarbageInfos?.count)! > 6) ? 40 * 6 : 40 * (self.streetsGarbageInfos?.count)!)
             self.streetTableView.reloadData()
             self.streetTableView.isHidden = false

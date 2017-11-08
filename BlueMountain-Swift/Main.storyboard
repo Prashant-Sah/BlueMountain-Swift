@@ -696,7 +696,29 @@ easily. Personal information is optional.</string>
                         <subviews>
                             <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gON-kM-leB" customClass="FSCalendar">
                                 <rect key="frame" x="0.0" y="64" width="414" height="353"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMh-VX-kWn">
+                                        <rect key="frame" x="380" y="8" width="14" height="24"/>
+                                        <state key="normal" image="rightBut"/>
+                                        <connections>
+                                            <action selector="rightButtonClicked:" destination="EDJ-R8-IdP" eventType="touchUpInside" id="dkE-cf-MWz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ht-5k-ZQk">
+                                        <rect key="frame" x="20" y="8" width="14" height="24"/>
+                                        <state key="normal" image="leftBut"/>
+                                        <connections>
+                                            <action selector="leftButtonClicked:" destination="EDJ-R8-IdP" eventType="touchUpInside" id="5Wp-ec-jQe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="8ht-5k-ZQk" firstAttribute="top" secondItem="gON-kM-leB" secondAttribute="top" constant="8" id="OBN-RF-JpM"/>
+                                    <constraint firstItem="qMh-VX-kWn" firstAttribute="top" secondItem="gON-kM-leB" secondAttribute="top" constant="8" id="Urk-eN-epI"/>
+                                    <constraint firstItem="8ht-5k-ZQk" firstAttribute="leading" secondItem="gON-kM-leB" secondAttribute="leading" constant="20" id="tVO-Hi-gbk"/>
+                                    <constraint firstAttribute="trailing" secondItem="qMh-VX-kWn" secondAttribute="trailing" constant="20" id="vdN-O3-kNy"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="firstWeekday">
                                         <integer key="value" value="1"/>
@@ -805,8 +827,10 @@ easily. Personal information is optional.</string>
                     <connections>
                         <outlet property="calendar" destination="gON-kM-leB" id="MPW-Jo-8NK"/>
                         <outlet property="garbageButton" destination="nVL-a1-0Ul" id="tuQ-tC-dsz"/>
+                        <outlet property="leftButton" destination="8ht-5k-ZQk" id="vmS-OT-wdH"/>
                         <outlet property="organicButton" destination="Qpf-89-mUI" id="YLK-xw-Jwy"/>
                         <outlet property="recyclingButton" destination="Vpy-mh-FE4" id="Jtf-Qp-LFA"/>
+                        <outlet property="rightButton" destination="qMh-VX-kWn" id="rVk-fc-Yda"/>
                         <outlet property="setReminderButton" destination="DIE-sW-tV4" id="0n5-Q4-7Of"/>
                         <outlet property="tableView" destination="Pu6-JX-jdN" id="JKd-pj-Z5f"/>
                     </connections>
@@ -912,7 +936,7 @@ easily. Personal information is optional.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yt1-iT-nIl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="xRd-TD-HAB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="BGj-eW-UkA" customClass="CustomNavigationBar" customModule="BlueMountain_Swift" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BGj-eW-UkA" customClass="CustomNavigationBar" customModule="BlueMountain_Swift" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -931,7 +955,7 @@ easily. Personal information is optional.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Y8-lX-Bbh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="4R0-hL-kKP"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Sj3-gR-ywt" customClass="CustomNavigationBar" customModule="BlueMountain_Swift" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sj3-gR-ywt" customClass="CustomNavigationBar" customModule="BlueMountain_Swift" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -950,7 +974,7 @@ easily. Personal information is optional.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mI4-gD-dhq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Zzk-U6-22Q"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iPv-ey-j5I" customClass="CustomNavigationBar" customModule="BlueMountain_Swift" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iPv-ey-j5I" customClass="CustomNavigationBar" customModule="BlueMountain_Swift" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -969,7 +993,7 @@ easily. Personal information is optional.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0qe-q7-prW" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="uJG-aa-2WT"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uR2-yV-siX" customClass="CustomNavigationBar" customModule="BlueMountain_Swift" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uR2-yV-siX" customClass="CustomNavigationBar" customModule="BlueMountain_Swift" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1047,9 +1071,11 @@ easily. Personal information is optional.</string>
     <resources>
         <image name="councilLogo_blue" width="76" height="56"/>
         <image name="garBut" width="50" height="50"/>
+        <image name="leftBut" width="14" height="24"/>
         <image name="newTickBut" width="11" height="11"/>
         <image name="orgBut" width="50" height="50"/>
         <image name="recBut" width="50" height="50"/>
+        <image name="rightBut" width="14" height="24"/>
         <image name="setRem" width="50" height="50"/>
         <image name="takePhotoBut" width="62" height="51"/>
     </resources>

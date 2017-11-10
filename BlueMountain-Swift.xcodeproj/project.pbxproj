@@ -21,6 +21,7 @@
 		7B7722F81FA34F9100CD63B4 /* CustomCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7722F71FA34F9100CD63B4 /* CustomCalendarView.xib */; };
 		7B77E34C1FA6CFA8004D34DD /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B77E34B1FA6CFA8004D34DD /* InitialViewController.swift */; };
 		7B7CD95E1F94C00E003FE148 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7CD95D1F94C00E003FE148 /* MapKit.framework */; };
+		7B99B2DA1FB4468700FD319C /* EventDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99B2D91FB4468700FD319C /* EventDate.swift */; };
 		7BA4560A1FB15FFB0031D98C /* ProgressIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA456091FB15FFB0031D98C /* ProgressIndicatorViewController.swift */; };
 		7BA4560C1FB1624E0031D98C /* VisibleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA4560B1FB1624E0031D98C /* VisibleController.swift */; };
 		7BAF27271F9DE8E300D38D86 /* ProblemTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF27261F9DE8E300D38D86 /* ProblemTypes.swift */; };
@@ -68,6 +69,7 @@
 		7B7722F71FA34F9100CD63B4 /* CustomCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalendarView.xib; sourceTree = "<group>"; };
 		7B77E34B1FA6CFA8004D34DD /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		7B7CD95D1F94C00E003FE148 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7B99B2D91FB4468700FD319C /* EventDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDate.swift; sourceTree = "<group>"; };
 		7BA456091FB15FFB0031D98C /* ProgressIndicatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorViewController.swift; sourceTree = "<group>"; };
 		7BA4560B1FB1624E0031D98C /* VisibleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleController.swift; sourceTree = "<group>"; };
 		7BAF27261F9DE8E300D38D86 /* ProblemTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemTypes.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				8FAA68A61F678ED60096ABC0 /* Sections.swift */,
 				7BAF27261F9DE8E300D38D86 /* ProblemTypes.swift */,
 				7B7722EF1FA3145300CD63B4 /* StreetGarbageInfo.swift */,
+				7B99B2D91FB4468700FD319C /* EventDate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				7B77E34C1FA6CFA8004D34DD /* InitialViewController.swift in Sources */,
 				7BA4560C1FB1624E0031D98C /* VisibleController.swift in Sources */,
 				8FC3294F1F20AF4900EAAD3B /* APICaller.swift in Sources */,
+				7B99B2DA1FB4468700FD319C /* EventDate.swift in Sources */,
 				8FAA68A71F678ED70096ABC0 /* Sections.swift in Sources */,
 				8F25F8E61F1E2AA4004140E3 /* SideBarViewController.swift in Sources */,
 				7BCB17B81F8E14C300FC1282 /* ProblemsViewController.swift in Sources */,

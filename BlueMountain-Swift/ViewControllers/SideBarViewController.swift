@@ -158,7 +158,7 @@ extension SideBarViewController : UITextFieldDelegate{
             if (isBackSpace == -92 ) { //&& selectedStreetIndex != nil
                 self.enableDisableSelectButton(withActiveState: false)
             }
-
+            
         }
         return true
     }
@@ -220,7 +220,6 @@ extension SideBarViewController {
     func setTableViewHeightAndReload(){
         
         self.autoCompleteTableView.frame.size.height = ((matchingNames?.count)! > 4) ? autoCompleteTableView.rowHeight * 4 : autoCompleteTableView.rowHeight * CGFloat((matchingNames?.count)!)
-        
         self.autoCompleteTableView.isHidden = false
         self.autoCompleteTableView.reloadData()
         
@@ -278,9 +277,8 @@ extension SideBarViewController : UITableViewDataSource, UITableViewDelegate {
         }else{
             streetTableView(isActive: false)
             streetTableView.isHidden = true
-            //            if let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as? CalendarViewController{
-            //                self.navigationController?.setViewControllers([calendarVC], animated: true)
-            //            }
+            let data = NSKeyedArchiver.archivedData(withRootObject: streetsGarbageInfos?[indexPath.row])
+            UserDefaults.standard.set(data, forKey: "Location")
             self.revealViewController().revealToggle(animated: true)
             resetView()
             
@@ -341,25 +339,6 @@ extension SideBarViewController{
             
             Alerter().showAlert(withMessage: "Looks like you have input garbage or nothing", alertTitle: "Error", alertActions: nil)
         }
-        /*
-         Alamofire.request(locationSearchURL, method: .post, parameters: params).responseJSON { (response) in
-         
-         if let responseDict = response.result.value as? [String : Any]{
-         if responseDict["code"] as! String == SUCCESS && responseDict["total"] as! String != "0" {
-         
-         self.streetsGarbageInfos = Mapper<StreetGarbageInfo>().mapArray(JSONObject: responseDict["results"])
-         completion()
-         
-         }else{
-         print("No Houses found")
-         }
-         
-         
-         }else if let error = response.result.error{
-         print(error.localizedDescription)
-         }
-         }
-         */
     }
     
     

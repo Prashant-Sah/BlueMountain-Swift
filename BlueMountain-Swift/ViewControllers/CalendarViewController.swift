@@ -48,7 +48,7 @@ class CalendarViewController : CustomRevealViewController{
         self.revealViewController().panGestureRecognizer()
         self.setCalendarLayout()
         
-        
+        EventDate().getCollectionDates()
         
     }
     
@@ -97,11 +97,15 @@ extension CalendarViewController : FSCalendarDataSource, FSCalendarDelegate{
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         
         if let cell = calendar.dequeueReusableCell(withIdentifier: "Cell", for: date, at: position) as? CustomCalendarCell {
+            
+            
             return cell
         }
         return FSCalendarCell()
         
     }
+    
+    
     
 }
 

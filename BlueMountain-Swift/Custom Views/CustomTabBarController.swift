@@ -24,24 +24,12 @@ class CustomTabBarController: UITabBarController, SWRevealViewControllerDelegate
         
         super.viewDidLoad()
         
-        let wasteMaterialsVC = self.storyboard?.instantiateViewController(withIdentifier: "WasteMaterialsVC") as! WasteMaterialsViewController
-        let problemsVC = self.storyboard?.instantiateViewController(withIdentifier: "ProblemsVC") as! ProblemsViewController
-        let informationVC = self.storyboard?.instantiateViewController(withIdentifier: "InformationViewController") as! InformationViewController
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(CustomTabBarController.setTabBarItemsBasedOnLocation) , name: locationSelectedNotificationKey , object: nil)
-        
-        /*
         if UserDefaults.standard.value(forKey: "Location") != nil {
-            let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as! CalendarViewController
-            self.setViewControllers([calendarVC, wasteMaterialsVC, problemsVC, informationVC], animated: true)
-            
+            self.setTabBarItems(withLocationSelected: true)
         }else{
-            let initialVC = self.storyboard?.instantiateViewController(withIdentifier: "InitialVC") as! InitialViewController
-            self.setViewControllers([initialVC, wasteMaterialsVC, problemsVC, informationVC], animated: true)
-            
+            self.setTabBarItems(withLocationSelected: false)
         }
- */
-        
+    
         self.setTabBarButtons()
         
     }
@@ -101,15 +89,29 @@ class CustomTabBarController: UITabBarController, SWRevealViewControllerDelegate
         
     }
     
-    func setTabBarItemsBasedOnLocation(){
+    func setTabBarItems(withLocationSelected isSelected : Bool){
         
-        let wasteMaterialsVC = self.storyboard?.instantiateViewController(withIdentifier: "WasteMaterialsVC") as! WasteMaterialsViewController
-        let problemsVC = self.storyboard?.instantiateViewController(withIdentifier: "ProblemsVC") as! ProblemsViewController
-        let informationVC = self.storyboard?.instantiateViewController(withIdentifier: "InformationViewController") as! InformationViewController
-        let initialVC = self.storyboard?.instantiateViewController(withIdentifier: "InitialVC") as! InitialViewController
-        self.setViewControllers([initialVC, wasteMaterialsVC, problemsVC, informationVC], animated: true)
+//        let wasteMaterialsVC = self.storyboard?.instantiateViewController(withIdentifier: "WasteMaterialsVC") as! WasteMaterialsViewController
+//        let problemsVC = self.storyboard?.instantiateViewController(withIdentifier: "ProblemsVC") as! ProblemsViewController
+//        let informationVC = self.storyboard?.instantiateViewController(withIdentifier: "InformationVC") as! InformationViewController
+        
+        let wasteMaterialsNavVC = self.storyboard?.instantiateViewController(withIdentifier: "WasteMaterialsNavVC") as! UINavigationController
+        let problemsNavVC = self.storyboard?.instantiateViewController(withIdentifier: "ProblemsNavVC") as! UINavigationController
+        let informationNavVC = self.storyboard?.instantiateViewController(withIdentifier: "InformationNavVC") as! UINavigationController
+        
+        if isSelected {
+            //let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarViewController
+            let calendarNavVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarNavVC") as! UINavigationController
+            //self.setViewControllers([calendarVC, wasteMaterialsVC, problemsVC, informationVC], animated: true)
+            self.setViewControllers([calendarNavVC, wasteMaterialsNavVC, problemsNavVC, informationNavVC], animated: true)
+        }else{
+            //let initialVC = self.storyboard?.instantiateViewController(withIdentifier: "InitialVC") as! InitialViewController
+            let initialNavVC = self.storyboard?.instantiateViewController(withIdentifier: "InitialNavVC") as! UINavigationController
+            //self.setViewControllers([initialVC, wasteMaterialsVC, problemsVC, informationVC], animated: true)
+            self.setViewControllers([initialNavVC, wasteMaterialsNavVC, problemsNavVC, informationNavVC], animated: true)
+        }
+        
     }
-    
     
 }
 
